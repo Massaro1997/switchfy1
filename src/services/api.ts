@@ -1,14 +1,21 @@
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://ff82d478-d7da-4a3a-96ea-83d4d70f559c-00-3kgl6pxwclsqg.janeway.replit.dev';
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 
 const apiHeaders = {
   'Content-Type': 'application/json',
-  ...(API_KEY && { 'Authorization': `Bearer ${API_KEY}` }),
+  ...(API_KEY && { 'X-API-Key': API_KEY }),
 };
 
 export const api = {
   // Crea un utente
-  createUser: async (userData: { email: string; name?: string }) => {
+  createUser: async (userData: { 
+    email: string; 
+    name?: string; 
+    phone?: string; 
+    city?: string; 
+    notes?: string; 
+    source?: string; 
+  }) => {
     try {
       const response = await fetch(`${API_BASE_URL}/api/users`, {
         method: 'POST',
@@ -148,6 +155,42 @@ export const api = {
       return await response.json();
     } catch (error) {
       console.error('Error getting contract status:', error);
+      throw error;
+    }
+  },
+
+  // Submit contact form
+  submitContactForm: async (contactData: {
+    name: string;
+    email: string;
+    phone?: string;
+    city?: string;
+    notes?: string;
+    source?: string;
+  }) => {
+    try {
+      console.log('Making request to:', `${API_BASE_URL}/api/leads/contact-form`);
+      console.log('With headers:', { 'Content-Type': 'application/json', 'X-API-Key': API_KEY });
+      console.log('With data:', contactData);
+      
+      const response = await fetch(`${API_BASE_URL}/api/leads/contact-form`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-API-Key': API_KEY || '',
+        },
+        body: JSON.stringify(contactData),
+        mode: 'cors',
+      });
+      
+      if (!response.ok) {
+        const error = await response.text();
+        throw new Error(error || 'Failed to submit contact form');
+      }
+      
+      return await response.json();
+    } catch (error) {
+      console.error('Error submitting contact form:', error);
       throw error;
     }
   },

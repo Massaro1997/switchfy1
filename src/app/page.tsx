@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { Check, ChevronRight, Shield, Sparkles, Play, FileText, HelpCircle } from "lucide-react";
+import { api } from "@/services/api";
 
 // --------- Config ---------
 
@@ -44,6 +45,9 @@ function QuizWizard({ onClose }: { onClose: () => void }) {
   const [step, setStep] = useState(0);
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
+  const [sessionId, setSessionId] = useState<string>("");
+  const [userId, setUserId] = useState<string>("");
+  const [answers, setAnswers] = useState<{[key: string]: string}>({});
 
   // Block body scroll when modal is open and handle ESC key
   React.useEffect(() => {
@@ -63,80 +67,119 @@ function QuizWizard({ onClose }: { onClose: () => void }) {
     };
   }, [onClose]);
 
-  const handleStart = (e: React.FormEvent) => {
+  const handleStart = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email.trim()) {
       alert("Inserisci una email valida");
       return;
     }
-    console.log("Starting quiz with email:", email);
+    
     setLoading(true);
-    setTimeout(() => {
-      console.log("Moving to step 1");
+    try {
+      // Create user
+      const userResponse = await api.createUser({ email, name: email.split('@')[0] });
+      setUserId(userResponse.user.id);
+      
+      // Start quiz session
+      const sessionResponse = await api.startQuizSession(userResponse.user.id);
+      setSessionId(sessionResponse.sessionId);
+      
+      console.log("User created:", userResponse.user.id);
+      console.log("Session started:", sessionResponse.sessionId);
+      
       setStep(1);
+    } catch (error) {
+      console.error("Error starting quiz:", error);
+      alert("Errore nel salvare i dati. Riprova.");
+    } finally {
       setLoading(false);
-    }, 1000);
+    }
   };
 
   const handleAnswer = async (answer: string) => {
     console.log("Answer selected:", answer, "Current step:", step);
     setLoading(true);
     
-    // Validate postal code if step 1
-    if (step === 1) {
-      // Basic validation first
-      if (!/^\d{5}$/.test(answer)) {
-        alert('Inserisci un CAP valido di 5 cifre (es. 10115).');
-        setLoading(false);
-        return;
+    try {
+      // Save answer to backend
+      const answerKey = step === 1 ? 'zip' : step === 2 ? 'household_size' : 'service_type';
+      await api.saveQuizAnswer({
+        sessionId,
+        step,
+        key: answerKey,
+        value: answer
+      });
+      
+      // Update local answers
+      setAnswers(prev => ({ ...prev, [answerKey]: answer }));
+      
+      // Validate postal code if step 1
+      if (step === 1) {
+        // Basic validation first
+        if (!/^\d{5}$/.test(answer)) {
+          alert('Inserisci un CAP valido di 5 cifre (es. 10115).');
+          setLoading(false);
+          return;
+        }
+        
+        try {
+          const response = await fetch(`https://openplzapi.org/de/Localities?postalCode=${answer}`, {
+            headers: {
+              'accept': 'application/json'
+            },
+            mode: 'cors'
+          });
+          
+          if (response.ok) {
+            const data = await response.json();
+            if (data && data.length > 0) {
+              // Valid German postal code
+              console.log(`Valid postal code: ${answer} - ${data[0].name}`);
+              setStep(2);
+              setLoading(false);
+              return;
+            } else {
+              alert('CAP non trovato nel database tedesco. Inserisci un CAP tedesco valido (es. 10115).');
+              setLoading(false);
+              return;
+            }
+          } else {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+          }
+        } catch (error) {
+          console.error('Postal code validation error:', error);
+          // Fallback: allow any 5-digit code if API fails
+          console.log('API failed, allowing postal code:', answer);
+          setStep(2);
+          setLoading(false);
+          return;
+        }
       }
       
-      try {
-        const response = await fetch(`https://openplzapi.org/de/Localities?postalCode=${answer}`, {
-          headers: {
-            'accept': 'application/json'
-          },
-          mode: 'cors'
+      // Regular flow for other steps
+      if (step < 3) {
+        setStep(step + 1);
+      } else {
+        // Final step - compute offers
+        const peopleCount = parseInt(answers.household_size?.charAt(0) || '1');
+        const annualKwh = peopleCount * 3500; // Estimate based on household size
+        
+        const offerResponse = await api.computeOffers({
+          zip: answers.zip,
+          annual_kwh: annualKwh,
+          tariff_preference: answers.service_type
         });
         
-        if (response.ok) {
-          const data = await response.json();
-          if (data && data.length > 0) {
-            // Valid German postal code
-            console.log(`Valid postal code: ${answer} - ${data[0].name}`);
-            setStep(2);
-            setLoading(false);
-            return;
-          } else {
-            alert('CAP non trovato nel database tedesco. Inserisci un CAP tedesco valido (es. 10115).');
-            setLoading(false);
-            return;
-          }
-        } else {
-          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-        }
-      } catch (error) {
-        console.error('Postal code validation error:', error);
-        // Fallback: allow any 5-digit code if API fails
-        console.log('API failed, allowing postal code:', answer);
-        setStep(2);
-        setLoading(false);
-        return;
+        console.log("Offers computed:", offerResponse);
+        setStep(4); // Show offers
       }
-    } 
-    
-    // Regular flow for other steps
-    setTimeout(() => {
-      if (step < 3) {
-        const nextStep = step + 1;
-        console.log("Moving to step:", nextStep);
-        setStep(nextStep);
-      } else {
-        console.log("Moving to offer step");
-        setStep(4); // Offer
-      }
+      
+    } catch (error) {
+      console.error("Error saving answer:", error);
+      alert("Errore nel salvare la risposta. Riprova.");
+    } finally {
       setLoading(false);
-    }, 800);
+    }
   };
 
   const resetQuiz = () => {
@@ -144,6 +187,9 @@ function QuizWizard({ onClose }: { onClose: () => void }) {
     setStep(0);
     setEmail("");
     setLoading(false);
+    setSessionId("");
+    setUserId("");
+    setAnswers({});
   };
 
   return (
@@ -466,36 +512,47 @@ export default function Landing() {
     
     const form = e.target as HTMLFormElement;
     const formData = new FormData(form);
+    const fullName = (formData.get('nome') as string) || '';
+    const nameParts = fullName.trim().split(' ');
+    const firstName = nameParts[0] || '';
+    const lastName = nameParts.slice(1).join(' ') || '';
+    
     const data = {
-      name: formData.get('nome') as string,
+      firstName: firstName,
+      lastName: lastName || 'N/A', // Fallback se non c'è cognome
       email: formData.get('email') as string,
       phone: formData.get('telefono') as string,
-      city: 'Non specificato', // Potremmo aggiungere un campo città in futuro
+      city: 'Non specificato',
       notes: formData.get('messaggio') as string,
       source: 'website-form'
     };
 
     try {
-      const response = await fetch('https://switchfy-clean.vercel.app/api/contact-form', {
+      console.log('Sending data:', data);
+      
+      // Use local API route to avoid CORS issues
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(data),
       });
 
-      const result = await response.json();
-      
-      if (result.success) {
-        alert('Grazie! Ti contatteremo presto per la tua consulenza gratuita. Il tuo lead è stato registrato con successo!');
-        form.reset();
-      } else {
-        alert('Si è verificato un errore. Riprova o contattaci direttamente.');
-        console.error('Form submission error:', result);
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || `HTTP ${response.status}`);
       }
+
+      const result = await response.json();
+      console.log('Contact form submitted successfully:', result);
+      alert('Grazie! Ti contatteremo presto per la tua consulenza gratuita. Il tuo lead è stato registrato con successo!');
+      form.reset();
     } catch (error) {
-      console.error('Network error:', error);
-      alert('Errore di connessione. Controlla la tua connessione internet e riprova.');
+      console.error('Full error details:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Errore di connessione';
+      console.error('Error message:', errorMessage);
+      alert(`Errore: ${errorMessage}`);
     } finally {
       setIsSubmittingContact(false);
     }
