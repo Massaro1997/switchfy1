@@ -21,7 +21,9 @@
       "Bash(git log:*)",
       "WebFetch(domain:switchfy-clean.vercel.app)",
       "Bash(git remote remove:*)",
-      "Bash(git rm:*)"
+      "Bash(git rm:*)",
+      "WebFetch(domain:www.switchfy.de)",
+      "WebFetch(domain:switchfy1-cxlf2kvol-calogeros-projects-bf0873a1.vercel.app)"
     ],
     "deny": [],
     "ask": [],
