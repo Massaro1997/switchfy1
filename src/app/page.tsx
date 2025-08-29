@@ -1913,6 +1913,83 @@ export default function Landing() {
         </Container>
       </section>
 
+      {/* Team Section */}
+      <section className="py-12 md:py-16 bg-gradient-to-r from-blue-50/30 to-green-50/30">
+        <Container>
+          <div className="text-center mb-12">
+            <div className="mx-auto mb-4 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-sm text-gray-600">
+              <span className="inline-flex h-2 w-2 rounded-full bg-black" /> Il nostro team
+            </div>
+            <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
+              Esperti di energia al tuo servizio
+            </h2>
+            <p className="mt-2 text-gray-600 max-w-2xl mx-auto">
+              Professionisti specializzati nel mercato energetico tedesco, pronti ad aiutarti a risparmiare
+            </p>
+          </div>
+          
+          <div className="grid gap-8 md:grid-cols-2 max-w-4xl mx-auto">
+            {/* Alessandra Card */}
+            <Card className="border-0 bg-white/80 backdrop-blur-sm shadow-xl overflow-hidden">
+              <div className="p-6">
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-24 h-24 mb-4 relative">
+                    <img 
+                      src="/ale.png" 
+                      alt="Alessandra - Energy Consultant" 
+                      className="w-full h-full object-cover rounded-full border-4 border-gradient-to-r from-blue-200 to-green-200"
+                    />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-1">Alessandra</h3>
+                  <p className="text-sm text-blue-600 font-semibold mb-3">Energy Consultant</p>
+                  <p className="text-gray-600 text-sm leading-relaxed">
+                    Esperta del mercato energetico tedesco con oltre 5 anni di esperienza. 
+                    Ha aiutato migliaia di famiglie italiane a trovare le migliori tariffe energia.
+                  </p>
+                  <div className="mt-4 flex items-center gap-1">
+                    {[...Array(5)].map((_, i) => (
+                      <div key={i} className="w-3 h-3 bg-gradient-to-r from-blue-400 to-green-400 rounded-full">
+                        <span className="text-white text-xs flex items-center justify-center">★</span>
+                      </div>
+                    ))}
+                    <span className="text-xs text-gray-600 ml-2">4.9/5 recensioni</span>
+                  </div>
+                </div>
+              </div>
+            </Card>
+
+            {/* Calogero Card */}
+            <Card className="border-0 bg-white/80 backdrop-blur-sm shadow-xl overflow-hidden">
+              <div className="p-6">
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-24 h-24 mb-4 relative">
+                    <img 
+                      src="/calogero.png" 
+                      alt="Calogero - Founder & CEO" 
+                      className="w-full h-full object-cover rounded-full border-4 border-gradient-to-r from-blue-200 to-green-200"
+                    />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-1">Calogero</h3>
+                  <p className="text-sm text-blue-600 font-semibold mb-3">Founder & CEO</p>
+                  <p className="text-gray-600 text-sm leading-relaxed">
+                    Fondatore di Switchfy, vive in Germania da anni e conosce perfettamente 
+                    le sfide degli italiani nel mercato energetico tedesco. La sua missione: semplificare il risparmio.
+                  </p>
+                  <div className="mt-4 flex items-center gap-1">
+                    {[...Array(5)].map((_, i) => (
+                      <div key={i} className="w-3 h-3 bg-gradient-to-r from-blue-400 to-green-400 rounded-full">
+                        <span className="text-white text-xs flex items-center justify-center">★</span>
+                      </div>
+                    ))}
+                    <span className="text-xs text-gray-600 ml-2">5.000+ clienti aiutati</span>
+                  </div>
+                </div>
+              </div>
+            </Card>
+          </div>
+        </Container>
+      </section>
+
       {/* Testimonianze */}
       <section className="py-12 md:py-16">
         <Container>
