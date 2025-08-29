@@ -144,7 +144,7 @@ function ComparisonPopup({
               {/* Hover Glow Effect */}
               <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-blue-500/5 via-blue-500/5 to-green-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               
-              <div className="relative flex items-center justify-between">
+              <div className="relative z-10 flex items-center justify-between">
                 <div className="flex-1">
                   {/* Provider Header */}
                   <div className="flex items-center gap-4 mb-4">
@@ -384,7 +384,7 @@ function QuickQuizForm({ onShowComparator }: { onShowComparator: (data: {cap: st
           <div className="absolute inset-0 bg-gradient-to-r from-blue-400 via-blue-400 to-green-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           
           {/* Button Content */}
-          <span className="">
+          <span className="relative z-10">
             {loading ? (
               <span className="flex items-center justify-center gap-3">
                 <div className="w-6 h-6 border-3 border-white/30 border-t-white rounded-full animate-spin"></div>
@@ -1050,7 +1050,7 @@ export default function Landing() {
           {/* Subtle dark overlay only for text readability */}
           <div className="absolute inset-0 bg-black/30"></div>
         </div>
-        <Container className=" grid items-center gap-6 md:gap-8 md:grid-cols-2 w-full">
+        <Container className="relative z-10 grid items-center gap-6 md:gap-8 md:grid-cols-2 w-full">
           <div className="space-y-4 md:space-y-6">
             <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-white/90 to-white/80 backdrop-blur-md px-4 py-2 text-sm font-medium text-blue-700 shadow-lg border border-white/30">
               <div className="w-2 h-2 bg-gradient-to-r from-blue-600 to-green-600 rounded-full animate-pulse"></div>
@@ -1279,10 +1279,10 @@ export default function Landing() {
                     className="w-full h-80 object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-blue-600/80 via-transparent to-transparent"></div>
-                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white relative z-10">
                     <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full mb-3">
                       <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                      <span className="text-xs font-semibold">5.000+ Famiglie Soddisfatte</span>
+                      <span className="text-xs font-semibold">500+ Famiglie Soddisfatte</span>
                     </div>
                     <h3 className="text-xl font-bold mb-2">Unisciti a migliaia di clienti felici</h3>
                     <p className="text-sm text-white/90">Famiglie italiane in Germania risparmiano €650 l'anno</p>
@@ -1340,7 +1340,7 @@ export default function Landing() {
             {/* Background Pattern */}
             <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 via-white to-green-50/30 rounded-3xl"></div>
             
-            <Card className="border-0 bg-white backdrop-blur-sm p-8 md:p-12 shadow-2xl relative overflow-hidden">
+            <Card className="border-0 bg-white backdrop-blur-sm p-8 md:p-12 shadow-2xl relative z-10 overflow-hidden">
               {/* Header */}
               <div className="text-center mb-8">
                 <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-100/50 to-green-100/50 px-4 py-2 rounded-full mb-6">
@@ -1361,9 +1361,6 @@ export default function Landing() {
               <div className="grid gap-8 md:gap-12 md:grid-cols-3 mb-8">
                 {/* Step 1 */}
                 <div className="relative group">
-                  <div className="absolute top-3 right-3 opacity-60 group-hover:opacity-80 transition-all duration-300">
-                    <img src="/slogo.png" alt="" className="w-4 h-4" />
-                  </div>
                   <div className="text-center">
                     {/* Step Number Badge */}
                     <div className="relative mb-6">
@@ -1392,9 +1389,6 @@ export default function Landing() {
 
                 {/* Step 2 */}
                 <div className="relative group">
-                  <div className="absolute top-3 right-3 opacity-60 group-hover:opacity-80 transition-all duration-300">
-                    <img src="/slogo.png" alt="" className="w-4 h-4" />
-                  </div>
                   <div className="text-center">
                     {/* Step Number Badge */}
                     <div className="relative mb-6">
@@ -1423,9 +1417,6 @@ export default function Landing() {
 
                 {/* Step 3 */}
                 <div className="relative group">
-                  <div className="absolute top-3 right-3 opacity-60 group-hover:opacity-80 transition-all duration-300">
-                    <img src="/slogo.png" alt="" className="w-4 h-4" />
-                  </div>
                   <div className="text-center">
                     {/* Step Number Badge */}
                     <div className="relative mb-6">
@@ -1636,11 +1627,11 @@ export default function Landing() {
         <Container>
           <div className="max-w-4xl mx-auto">
             {/* Main Quiz Teaser Card */}
-            <Card className="border-0 bg-white/90 backdrop-blur-sm shadow-2xl p-8 md:p-12 relative overflow-hidden">
+            <Card className="border-0 bg-white/90 backdrop-blur-sm shadow-2xl p-8 md:p-12 relative z-10 overflow-hidden">
               {/* Background Pattern */}
               <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-green-50/30 to-blue-50/50"></div>
               
-              <div className=" grid lg:grid-cols-5 gap-8 items-center">
+              <div className="relative z-10 grid lg:grid-cols-5 gap-8 items-center">
                 <div className="lg:col-span-3 text-center lg:text-left">
                   {/* Header */}
                   <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-100/50 to-green-100/50 px-4 py-2 rounded-full mb-6">
@@ -2142,11 +2133,11 @@ export default function Landing() {
 
           {/* Strong CTA dopo testimonials */}
           <div className="mt-12 text-center">
-            <Card className="border-0 bg-gradient-to-br from-blue-100/80 via-green-100/60 to-blue-100/80 backdrop-blur-sm shadow-2xl p-8 md:p-12 max-w-6xl mx-auto relative overflow-hidden">
+            <Card className="border-0 bg-gradient-to-br from-blue-100/80 via-green-100/60 to-blue-100/80 backdrop-blur-sm shadow-2xl p-8 md:p-12 max-w-6xl mx-auto relative z-10 overflow-hidden">
               {/* Background Pattern */}
               <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 via-transparent to-green-50/30"></div>
               
-              <div className=" grid lg:grid-cols-3 gap-8 items-center">
+              <div className="relative z-10 grid lg:grid-cols-3 gap-8 items-center">
                 <div className="lg:col-span-2">
                 <div className="inline-flex items-center gap-2 bg-gradient-to-r from-green-100 to-blue-100 px-4 py-2 rounded-full mb-6">
                   <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
@@ -2290,8 +2281,8 @@ export default function Landing() {
           <div className="absolute inset-0 bg-black/40"></div>
         </div>
         
-        <Container className="">
-          <div className="text-center text-white">
+        <Container className="relative z-10">
+          <div className="text-center text-white relative z-10">
             <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
               <div className="w-3 h-3 bg-white rounded-full animate-pulse"></div>
               <span className="text-sm font-bold">
