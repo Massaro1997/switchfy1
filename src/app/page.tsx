@@ -40,6 +40,379 @@ function SectionTitle({ k, title, subtitle }: { k: string; title: string; subtit
   );
 }
 
+// --------- Comparison Popup Component ---------
+function ComparisonPopup({ 
+  isOpen, 
+  onClose, 
+  data 
+}: { 
+  isOpen: boolean; 
+  onClose: () => void; 
+  data: {cap: string; persone: string; abitazione: string} | null;
+}) {
+  if (!isOpen || !data) return null;
+
+  // Generate realistic offers based on user data
+  const generateOffers = () => {
+    const peopleCount = parseInt(data.persone.charAt(0) || '1');
+    const basePrice = peopleCount * 100; // Base price per person
+    
+    const providers = [
+      { name: 'E.ON', color: 'green', rating: 4.5 },
+      { name: 'Vattenfall', color: 'blue', rating: 4.3 },
+      { name: 'EnBW', color: 'green', rating: 4.4 },
+      { name: 'RWE', color: 'blue', rating: 4.2 },
+      { name: 'Stadtwerke', color: 'green', rating: 4.6 },
+      { name: 'Check24 Energie', color: 'blue', rating: 4.1 }
+    ];
+
+    return providers.slice(0, 5).map((provider, index) => ({
+      ...provider,
+      monthlyPrice: basePrice + (index * 15) + Math.floor(Math.random() * 20),
+      annualSavings: 850 - (index * 100) + Math.floor(Math.random() * 100),
+      badge: index === 0 ? 'Più conveniente' : index === 1 ? 'Più popolare' : null,
+      bonus: index < 2 ? `€${50 + index * 25} bonus` : null
+    }));
+  };
+
+  const offers = generateOffers();
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-lg p-4 overflow-y-auto animate-in fade-in duration-300">
+      <div className="w-full max-w-5xl bg-white/95 backdrop-blur-2xl rounded-3xl shadow-2xl max-h-[90vh] overflow-hidden border border-white/20 animate-in slide-in-from-bottom-8 duration-500">
+        
+        {/* Enhanced Header with Gradient and Pattern */}
+        <div className="relative bg-gradient-to-br from-blue-600 via-blue-500 to-green-500 text-white p-8 overflow-hidden">
+          {/* Background Pattern */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-white/20 rounded-full -mr-16 -mt-16"></div>
+            <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full -ml-12 -mb-12"></div>
+            <div className="absolute top-1/2 left-1/3 w-16 h-16 bg-white/5 rounded-full"></div>
+          </div>
+          
+          <div className="relative flex items-center justify-between">
+            <div>
+              <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full mb-3">
+                <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                <span className="text-xs font-bold">OFFERTE PERSONALIZZATE</span>
+              </div>
+              <h2 className="text-3xl font-black mb-3 bg-gradient-to-r from-white to-white/90 bg-clip-text">
+                🎯 Le migliori tariffe per te
+              </h2>
+              <div className="flex flex-wrap items-center gap-4 text-white/90">
+                <div className="flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full">
+                  <span className="text-sm font-medium">👥 {data.persone}</span>
+                </div>
+                <div className="flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full">
+                  <span className="text-sm font-medium">📍 CAP {data.cap}</span>
+                </div>
+                <div className="flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full">
+                  <span className="text-sm font-medium">⚡ {data.abitazione}</span>
+                </div>
+              </div>
+            </div>
+            <button 
+              onClick={onClose}
+              className="w-12 h-12 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-all duration-300 hover:scale-110 group"
+            >
+              <span className="text-2xl group-hover:rotate-90 transition-transform duration-300">×</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Enhanced Offers */}
+        <div className="p-8 space-y-5 max-h-[60vh] overflow-y-auto">
+          {offers.map((offer, index) => (
+            <div 
+              key={index}
+              className={`group relative p-6 rounded-3xl transition-all duration-300 hover:shadow-2xl cursor-pointer transform hover:scale-[1.02] ${
+                offer.badge 
+                  ? 'bg-gradient-to-br from-green-50 via-white to-blue-50 border-2 border-green-200 shadow-lg' 
+                  : 'bg-white/80 backdrop-blur-sm border-2 border-gray-200/60 hover:border-blue-300'
+              }`}
+            >
+              {/* Badge */}
+              {offer.badge && (
+                <div className={`absolute -top-3 left-6 px-4 py-1.5 text-xs font-black text-white rounded-full shadow-lg animate-bounce ${
+                  index === 0 ? 'bg-gradient-to-r from-green-500 to-green-600' : 'bg-gradient-to-r from-blue-500 to-blue-600'
+                }`}>
+                  {index === 0 ? '🏆 ' : '🔥 '}{offer.badge}
+                </div>
+              )}
+              
+              {/* Hover Glow Effect */}
+              <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-blue-500/5 via-blue-500/5 to-green-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              
+              <div className="relative flex items-center justify-between">
+                <div className="flex-1">
+                  {/* Provider Header */}
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className={`w-5 h-5 rounded-full shadow-lg ${
+                      offer.color === 'green' ? 'bg-gradient-to-r from-green-400 to-green-600' : 
+                      offer.color === 'blue' ? 'bg-gradient-to-r from-blue-400 to-blue-600' : 
+                      offer.color === 'orange' ? 'bg-gradient-to-r from-orange-400 to-red-500' : 
+                      'bg-gradient-to-r from-purple-400 to-purple-600'
+                    }`}></div>
+                    <h3 className="text-xl font-black text-gray-900">{offer.name}</h3>
+                    <div className="flex items-center gap-2 bg-yellow-50 px-3 py-1 rounded-full">
+                      <div className="flex">
+                        {[...Array(5)].map((_, i) => (
+                          <span key={i} className={`text-sm ${i < Math.floor(offer.rating) ? 'text-yellow-500' : 'text-gray-300'}`}>★</span>
+                        ))}
+                      </div>
+                      <span className="text-sm font-bold text-gray-700">{offer.rating}</span>
+                    </div>
+                  </div>
+                  
+                  {/* Stats Grid */}
+                  <div className="grid grid-cols-3 gap-6">
+                    <div className="text-center p-3 bg-gray-50/50 rounded-2xl">
+                      <p className="text-xs text-gray-500 font-medium mb-1">💶 Costo mensile</p>
+                      <p className="font-black text-lg text-gray-900">€{offer.monthlyPrice}</p>
+                      <p className="text-xs text-gray-400">al mese</p>
+                    </div>
+                    <div className="text-center p-3 bg-green-50/50 rounded-2xl">
+                      <p className="text-xs text-gray-500 font-medium mb-1">💰 Risparmio annuo</p>
+                      <p className="font-black text-lg text-green-700">€{offer.annualSavings}</p>
+                      <p className="text-xs text-green-500">vs fornitore base</p>
+                    </div>
+                    <div className="text-center p-3 bg-blue-50/50 rounded-2xl">
+                      <p className="text-xs text-gray-500 font-medium mb-1">🎁 Bonus</p>
+                      <p className="font-black text-lg text-blue-700">{offer.bonus || 'Nessuno'}</p>
+                      <p className="text-xs text-blue-500">cashback</p>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Action Button */}
+                <div className="ml-6">
+                  <Button className="group bg-gradient-to-br from-blue-600 via-blue-500 to-green-600 !text-white px-8 py-4 rounded-2xl hover:shadow-2xl hover:shadow-green-500/25 transition-all duration-300 transform hover:scale-105 font-black text-base">
+                    <span className="flex items-center gap-2">
+                      Scegli Offerta
+                      <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-all">
+                        <ChevronRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
+                      </div>
+                    </span>
+                  </Button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Enhanced Footer */}
+        <div className="bg-gradient-to-r from-gray-50 via-blue-50/30 to-gray-50 p-6 border-t border-gray-100">
+          <div className="flex items-center justify-between">
+            <div className="flex flex-wrap items-center gap-4">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                <p className="text-sm font-medium text-gray-700">⚡ Prezzi aggiornati in tempo reale</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                <p className="text-sm font-medium text-gray-700">🔒 100% sicuro e GDPR compliant</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <p className="text-sm font-medium text-gray-700">✨ Completamente gratuito</p>
+              </div>
+            </div>
+            <Button 
+              onClick={onClose}
+              className="group bg-white/80 backdrop-blur-sm border-2 border-gray-200 hover:border-gray-300 hover:bg-white !text-gray-700 px-6 py-3 rounded-2xl transition-all duration-300 hover:shadow-lg"
+            >
+              <span className="flex items-center gap-2">
+                Chiudi
+                <span className="group-hover:rotate-90 transition-transform duration-300">×</span>
+              </span>
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// --------- Quick Quiz Form Component for Hero ---------
+function QuickQuizForm({ onShowComparator }: { onShowComparator: (data: {cap: string; persone: string; abitazione: string}) => void }) {
+  const [cap, setCap] = useState('');
+  const [persone, setPersone] = useState('');
+  const [abitazione, setAbitazione] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!cap || !persone || !abitazione) {
+      alert('Compila tutti i campi per continuare');
+      return;
+    }
+
+    setLoading(true);
+    try {
+      // Simulate quick calculation with loading effect
+      await new Promise(resolve => setTimeout(resolve, 2000)); // 2 second delay for effect
+      
+      // Show comparator popup with user data
+      onShowComparator({
+        cap,
+        persone,
+        abitazione
+      });
+      
+      // Reset form
+      setCap('');
+      setPersone('');
+      setAbitazione('');
+      
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Errore nel calcolo. Riprova.';
+      alert(`Errore: ${errorMessage}`);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="space-y-4">
+      {/* CAP */}
+      <div className="mb-6">
+        <div className="text-center mb-4">
+          <h4 className="text-xl font-black bg-gradient-to-r from-blue-800 to-green-800 bg-clip-text text-transparent">
+            Dove abiti in Germania?
+          </h4>
+        </div>
+        <div className="relative group">
+          <input
+            type="text"
+            value={cap}
+            onChange={(e) => setCap(e.target.value)}
+            placeholder="es. 10115 (Berlino)"
+            maxLength={5}
+            pattern="[0-9]{5}"
+            className="w-full px-6 py-4 bg-white border-2 border-blue-200/60 rounded-2xl focus:ring-4 focus:ring-green-500/20 focus:border-green-500 focus:shadow-lg transition-all duration-300 text-center font-bold text-xl tracking-wider group-hover:border-green-300"
+            onKeyDown={(e) => {
+              if (!/[0-9]/.test(e.key) && e.key !== 'Backspace' && e.key !== 'Delete' && e.key !== 'Tab' && e.key !== 'Enter') {
+                e.preventDefault();
+              }
+            }}
+          />
+          <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/5 to-green-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+        </div>
+      </div>
+
+      {/* Persone */}
+      <div className="mb-6">
+        <div className="text-center mb-4">
+          <h4 className="text-xl font-black bg-gradient-to-r from-blue-800 to-green-800 bg-clip-text text-transparent">
+            Quante persone vivono in casa?
+          </h4>
+        </div>
+        <div className="grid grid-cols-5 gap-2">
+          {[
+            { value: "1 persona", icon: "1️⃣" },
+            { value: "2 persone", icon: "2️⃣" },
+            { value: "3 persone", icon: "3️⃣" },
+            { value: "4 persone", icon: "4️⃣" },
+            { value: "5+ persone", icon: "5️⃣" }
+          ].map((option) => (
+            <button
+              key={option.value}
+              type="button"
+              onClick={() => setPersone(option.value)}
+              className={`group relative p-4 rounded-2xl border-2 transition-all duration-300 hover:scale-110 hover:shadow-lg ${
+                persone === option.value 
+                  ? 'border-blue-500 bg-gradient-to-br from-blue-50 to-green-50 text-blue-700 shadow-lg transform scale-105' 
+                  : 'border-gray-200/60 hover:border-blue-300 text-gray-600 bg-white hover:bg-gradient-to-br hover:from-blue-50/50 hover:to-green-50/50'
+              }`}
+            >
+              <div className="text-3xl transition-transform group-hover:scale-110">{option.icon}</div>
+              {persone === option.value && (
+                <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+              )}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Tipo servizio */}
+      <div className="mb-6">
+        <div className="text-center mb-4">
+          <h4 className="text-xl font-black bg-gradient-to-r from-blue-800 to-green-800 bg-clip-text text-transparent">
+            Di cosa hai bisogno?
+          </h4>
+        </div>
+        <div className="grid grid-cols-3 gap-3">
+          {[
+            { value: "Solo Luce", icon: "💡", label: "Solo Luce", gradient: "from-blue-400 to-blue-600" },
+            { value: "Solo Gas", icon: "🔥", label: "Solo Gas", gradient: "from-green-500 to-green-600" },
+            { value: "Luce + Gas (entrambi)", icon: "💡🔥", label: "Luce + Gas", gradient: "from-blue-500 to-green-500" }
+          ].map((option) => (
+            <button
+              key={option.value}
+              type="button"
+              onClick={() => setAbitazione(option.value)}
+              className={`group relative p-4 rounded-2xl border-2 transition-all duration-300 hover:scale-105 hover:shadow-xl ${
+                abitazione === option.value 
+                  ? `border-transparent bg-gradient-to-br ${option.gradient} text-white shadow-xl transform scale-105` 
+                  : 'border-gray-200/60 hover:border-blue-300 text-gray-600 bg-white hover:bg-gradient-to-br hover:from-blue-50/50 hover:to-green-50/50'
+              }`}
+            >
+              <div className="text-3xl mb-2 transition-transform group-hover:scale-110">{option.icon}</div>
+              <div className={`text-xs font-bold text-center ${
+                abitazione === option.value ? 'text-white' : ''
+              }`}>{option.label}</div>
+              {abitazione === option.value && (
+                <div className="absolute -top-1 -right-1 w-4 h-4 bg-white rounded-full flex items-center justify-center">
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                </div>
+              )}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Enhanced Submit Button */}
+      <div className="mt-6">
+        <Button 
+          type="submit"
+          disabled={loading}
+          className="group relative w-full bg-gradient-to-r from-blue-600 via-blue-500 to-green-600 !text-white py-4 text-lg font-black rounded-2xl shadow-2xl hover:shadow-green-500/25 transform hover:scale-[1.02] transition-all duration-500 border-0 disabled:opacity-50 overflow-hidden"
+        >
+          {/* Animated Background */}
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-400 via-blue-400 to-green-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          
+          {/* Button Content */}
+          <span className="relative z-10">
+            {loading ? (
+              <span className="flex items-center justify-center gap-3">
+                <div className="w-6 h-6 border-3 border-white/30 border-t-white rounded-full animate-spin"></div>
+                <span className="animate-pulse">Calcolo in corso...</span>
+              </span>
+            ) : (
+              <div className="flex items-center justify-between w-full px-4">
+                <div style={{width: '20px'}}></div>
+                <div style={{position: 'relative', left: '60px'}}>
+                  <span className="text-xl font-black">Scopri subito quanto puoi risparmiare oggi</span>
+                </div>
+                <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-all group-hover:scale-110" style={{position: 'relative', left: '80px'}}>
+                  <ChevronRight className="h-5 w-5 group-hover:translate-x-0.5 transition-transform" />
+                </div>
+              </div>
+            )}
+          </span>
+        </Button>
+        
+        <div className="text-center mt-3">
+          <p className="text-sm font-medium bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
+            Calcolo istantaneo • 100% gratuito e sicuro
+          </p>
+        </div>
+      </div>
+    </form>
+  );
+}
+
 // --------- Simple Working Quiz ---------
 function QuizWizard({ onClose }: { onClose: () => void }) {
   const [step, setStep] = useState(0);
@@ -404,7 +777,7 @@ function QuizWizard({ onClose }: { onClose: () => void }) {
                   savings: "€150", 
                   type: "Standard", 
                   features: ["Fornitore locale", "Servizio clienti 24/7", "Fatturazione mensile"],
-                  color: "purple"
+                  color: "blue"
                 },
                 { 
                   provider: "Yello Strom", 
@@ -444,7 +817,7 @@ function QuizWizard({ onClose }: { onClose: () => void }) {
                           <div className={`w-3 h-3 rounded-full ${
                             offer.color === 'green' ? 'bg-green-500' : 
                             offer.color === 'blue' ? 'bg-blue-500' : 
-                            offer.color === 'purple' ? 'bg-purple-500' : 
+                            offer.color === 'blue' ? 'bg-blue-500' : 
                             offer.color === 'orange' ? 'bg-orange-500' : 
                             'bg-teal-500'
                           }`}></div>
@@ -453,7 +826,7 @@ function QuizWizard({ onClose }: { onClose: () => void }) {
                           <span className={`text-xs px-2 py-1 rounded-full ${
                             offer.color === 'green' ? 'bg-green-100 text-green-700' : 
                             offer.color === 'blue' ? 'bg-blue-100 text-blue-700' : 
-                            offer.color === 'purple' ? 'bg-purple-100 text-purple-700' : 
+                            offer.color === 'blue' ? 'bg-blue-100 text-blue-700' : 
                             offer.color === 'orange' ? 'bg-orange-100 text-orange-700' : 
                             'bg-teal-100 text-teal-700'
                           }`}>{offer.type}</span>
@@ -505,6 +878,8 @@ function QuizWizard({ onClose }: { onClose: () => void }) {
 export default function Landing() {
   const [quizOpen, setQuizOpen] = useState(false);
   const [isSubmittingContact, setIsSubmittingContact] = useState(false);
+  const [comparatorOpen, setComparatorOpen] = useState(false);
+  const [comparatorData, setComparatorData] = useState<{cap: string; persone: string; abitazione: string} | null>(null);
 
   const handleContactSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -710,104 +1085,46 @@ export default function Landing() {
             </div>
           </div>
           <div className="relative">
-            {/* iOS 16 Style Card */}
-            <div className="relative bg-white backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 overflow-hidden">
-              {/* Glassmorphism Background */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-green-500/5 to-blue-600/10"></div>
+            {/* Enhanced Quiz Card */}
+            <div className="relative group">
+              {/* Animated Background Glow - Brand Colors */}
+              <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 via-green-400 to-blue-600 rounded-3xl blur-xl opacity-25 group-hover:opacity-40 transition-all duration-700 animate-pulse"></div>
               
-              {/* Content */}
-              <div className="relative p-4 md:p-5">
-                {/* Header */}
-                <div className="text-center mb-3">
-                  <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-100 to-green-100 px-3 py-1.5 rounded-full mb-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                    <span className="text-xs font-semibold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
-                      Cambio Fornitore
-                    </span>
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-1">Risparmia su luce e gas</h3>
-                  <p className="text-gray-600 text-sm">Fino a €850 l'anno in meno</p>
+              {/* Main Card */}
+              <div className="relative bg-white/95 backdrop-blur-2xl rounded-3xl shadow-2xl border border-white/40 overflow-hidden">
+                {/* Animated Background Pattern - Brand Colors */}
+                <div className="absolute inset-0">
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-50/90 via-green-50/70 to-blue-100/50"></div>
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-green-300/20 to-transparent rounded-full"></div>
+                  <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-blue-300/20 to-transparent rounded-full"></div>
                 </div>
-
-                {/* Stats Card - iOS Style */}
-                <div className="bg-gradient-to-br from-blue-50/80 to-green-50/80 backdrop-blur-sm rounded-2xl p-3 mb-3 border border-blue-100/50">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <div className="text-2xl font-black bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
-                        €850
-                      </div>
-                      <p className="text-gray-700 font-medium text-xs">Risparmio annuo</p>
-                    </div>
-                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-green-500 rounded-2xl flex items-center justify-center shadow-lg">
-                      <Sparkles className="h-6 w-6 text-white" />
-                    </div>
-                  </div>
-                </div>
-
-                {/* Benefits - iOS Style Pills */}
-                <div className="grid grid-cols-2 gap-2 mb-3">
-                  <div className="bg-white backdrop-blur-sm rounded-xl p-2 border border-blue-100/30">
-                    <div className="flex items-center gap-2">
-                      <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center">
-                        <Check className="h-3 w-3 text-blue-600" />
-                      </div>
-                      <span className="text-xs font-medium text-gray-800">150+ fornitori</span>
-                    </div>
-                  </div>
-                  <div className="bg-white backdrop-blur-sm rounded-xl p-2 border border-green-100/30">
-                    <div className="flex items-center gap-2">
-                      <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
-                        <Shield className="h-3 w-3 text-green-600" />
-                      </div>
-                      <span className="text-xs font-medium text-gray-800">100% sicuro</span>
-                    </div>
-                  </div>
-                  <div className="bg-white backdrop-blur-sm rounded-xl p-2 border border-blue-100/30">
-                    <div className="flex items-center gap-2">
-                      <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center">
-                        <FileText className="h-3 w-3 text-blue-600" />
-                      </div>
-                      <span className="text-xs font-medium text-gray-800">Zero burocrazia</span>
-                    </div>
-                  </div>
-                  <div className="bg-white backdrop-blur-sm rounded-xl p-2 border border-green-100/30">
-                    <div className="flex items-center gap-2">
-                      <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
-                        <Sparkles className="h-3 w-3 text-green-600" />
-                      </div>
-                      <span className="text-xs font-medium text-gray-800">Gratuito</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* CTA Button - iOS Style */}
-                <Button 
-                  className="w-full bg-gradient-to-r from-blue-600 via-blue-500 to-green-500 !text-white py-3 text-base font-semibold rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 border-0"
-                  onClick={() => setQuizOpen(true)}
-                >
-                  <span className="flex items-center justify-center gap-2">
-                    Calcola Risparmio
-                    <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center">
-                      <ChevronRight className="h-4 w-4" />
-                    </div>
-                  </span>
-                </Button>
                 
-                <div className="text-center mt-3">
-                  <p className="text-xs text-gray-500">⚡ 3 domande • 60 secondi</p>
-                </div>
-
-                {/* Social Proof - iOS Style */}
-                <div className="mt-4 p-3 bg-white backdrop-blur-sm rounded-xl border border-gray-50/40">
-                  <div className="flex items-center justify-center gap-3">
-                    <div className="flex">
-                      {[...Array(5)].map((_, i) => (
-                        <div key={i} className="w-4 h-4 bg-gradient-to-r from-blue-400 to-green-400 rounded-full mr-1 flex items-center justify-center">
-                          <span className="text-white text-xs">★</span>
-                        </div>
-                      ))}
+                {/* Content */}
+                <div className="relative p-5 md:p-7">
+                  {/* Enhanced Header with Marketing Copy */}
+                  <div className="text-center mb-8">
+                    <div className="inline-flex items-center gap-2 bg-gradient-to-r from-green-100/80 to-blue-100/80 backdrop-blur-sm border border-green-300/30 px-4 py-2 rounded-full mb-5 shadow-sm">
+                      <div className="w-3 h-3 bg-gradient-to-r from-green-500 to-green-600 rounded-full animate-pulse shadow-sm"></div>
+                      <span className="text-sm font-bold bg-gradient-to-r from-blue-700 to-green-700 bg-clip-text text-transparent">
+                        RISPARMIO GARANTITO
+                      </span>
                     </div>
-                    <span className="text-xs font-medium text-gray-700">5.000+ clienti</span>
+                    <h3 className="text-2xl font-black bg-gradient-to-r from-blue-800 to-green-800 bg-clip-text text-transparent mb-6 leading-tight">
+                      Scopri subito quanto puoi<br />risparmiare oggi
+                    </h3>
+                  </div>
+
+                  {/* Enhanced Quiz Form */}
+                  <QuickQuizForm onShowComparator={(data) => {
+                    setComparatorData(data);
+                    setComparatorOpen(true);
+                  }} />
+                  
+                  {/* Benefits at bottom */}
+                  <div className="mt-4 pt-3 border-t border-gray-200/30">
+                    <p className="text-center text-xs font-medium leading-relaxed text-gray-600">
+                      <span className="text-green-600">✓ Fino a €850 all'anno</span> • <span className="text-blue-600">✓ Cambio automatico</span> • <span className="text-gray-600">✓ Zero burocrazia</span>
+                    </p>
                   </div>
                 </div>
               </div>
@@ -861,19 +1178,19 @@ export default function Landing() {
             </Card>
 
             <Card className="text-center border-0 bg-white backdrop-blur-sm p-6 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-50/50 to-blue-50/30 opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-green-50/30 opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
               <div className="absolute top-3 right-3 opacity-60 group-hover:opacity-80 transition-all duration-300">
                 <img src="/slogo.png" alt="" className="w-4 h-4" />
               </div>
               <div className="relative z-10">
-                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-blue-500 rounded-3xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110 relative overflow-hidden">
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-green-500 rounded-3xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110 relative overflow-hidden">
                   <span className="text-white font-black text-lg relative z-10">60s</span>
                 </div>
-                <div className="text-3xl font-black bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-2">Veloce</div>
+                <div className="text-3xl font-black bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent mb-2">Veloce</div>
                 <p className="text-sm text-gray-800 font-bold mb-1">Quiz Completo</p>
-                <p className="text-xs text-purple-600 font-semibold">risultato istantaneo</p>
+                <p className="text-xs text-blue-600 font-semibold">risultato istantaneo</p>
                 <div className="mt-3 h-1 bg-gray-200 rounded-full overflow-hidden">
-                  <div className="h-full bg-gradient-to-r from-purple-500 to-blue-500 rounded-full w-3/5 transition-all duration-1000 group-hover:w-full"></div>
+                  <div className="h-full bg-gradient-to-r from-blue-500 to-green-500 rounded-full w-3/5 transition-all duration-1000 group-hover:w-full"></div>
                 </div>
               </div>
             </Card>
@@ -1100,7 +1417,7 @@ export default function Landing() {
                   <div className="text-center">
                     {/* Step Number Badge */}
                     <div className="relative mb-6">
-                      <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-purple-600 rounded-3xl flex items-center justify-center mx-auto shadow-xl group-hover:shadow-2xl transition-all duration-300 group-hover:scale-110">
+                      <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-green-600 rounded-3xl flex items-center justify-center mx-auto shadow-xl group-hover:shadow-2xl transition-all duration-300 group-hover:scale-110">
                         <div className="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center">
                           <span className="text-white font-black text-xl">3</span>
                         </div>
@@ -1108,12 +1425,12 @@ export default function Landing() {
                     </div>
                     
                     {/* Step Content */}
-                    <div className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl border border-purple-100/50 shadow-lg group-hover:shadow-xl transition-all duration-300">
+                    <div className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl border border-blue-100/50 shadow-lg group-hover:shadow-xl transition-all duration-300">
                       <h4 className="text-xl font-bold text-gray-900 mb-3">Firma digitale</h4>
                       <p className="text-gray-600 mb-4 leading-relaxed">
                         Dimentica fax, raccomandate e call center. Con Switchfy firmi online e sei operativo in pochi minuti.
                       </p>
-                      <div className="flex items-center justify-center gap-2 text-sm text-purple-600 font-semibold">
+                      <div className="flex items-center justify-center gap-2 text-sm text-blue-600 font-semibold">
                         <Shield className="h-4 w-4" />
                         <span>100% digitale</span>
                       </div>
@@ -1360,13 +1677,13 @@ export default function Landing() {
                   </Button>
 
                   <Button 
-                    className="group bg-white border-3 border-purple-200 hover:border-purple-500 hover:bg-purple-50 p-6 h-auto transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                    className="group bg-white border-3 border-blue-200 hover:border-blue-500 hover:bg-blue-50 p-6 h-auto transition-all duration-300 hover:scale-105 hover:shadow-lg"
                     onClick={() => setQuizOpen(true)}
                   >
                     <div className="text-center">
-                      <div className="text-2xl font-black text-purple-600 mb-2">&gt; €100</div>
+                      <div className="text-2xl font-black text-blue-600 mb-2">&gt; €100</div>
                       <p className="text-sm text-gray-700 font-medium">Consumo Alto</p>
-                      <div className="w-full h-1 bg-purple-200 rounded-full mt-3">
+                      <div className="w-full h-1 bg-blue-200 rounded-full mt-3">
                         <div className="w-full h-full bg-gradient-to-r from-blue-500 to-green-500 rounded-full"></div>
                       </div>
                     </div>
@@ -2014,6 +2331,12 @@ export default function Landing() {
       </footer>
 
       {quizOpen && <QuizWizard onClose={() => setQuizOpen(false)} />}
+      
+      <ComparisonPopup 
+        isOpen={comparatorOpen}
+        onClose={() => setComparatorOpen(false)}
+        data={comparatorData}
+      />
     </div>
   );
 }
