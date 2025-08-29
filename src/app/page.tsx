@@ -1926,17 +1926,17 @@ export default function Landing() {
             {/* Alessandra Card */}
             <Card className="border-0 bg-white/80 backdrop-blur-sm shadow-xl overflow-hidden">
               {/* Photo Section - Takes up entire top half */}
-              <div className="h-64 relative">
-                <img 
-                  src="/ale.png" 
-                  alt="Alessandra - Energy Consultant" 
-                  className="w-full h-full object-cover"
-                />
-                {/* Optional overlay for better text readability if needed */}
-                <div className="absolute inset-0 bg-black/10"></div>
+              <div className="h-64 flex items-center justify-center p-4 bg-gradient-to-br from-blue-50/20 to-white">
+                <div className="w-60 h-60 relative">
+                  <img 
+                    src="/ale.png" 
+                    alt="Alessandra - Energy Consultant" 
+                    className="w-full h-full object-cover rounded-full border-4 border-white shadow-2xl"
+                  />
+                </div>
               </div>
               {/* Content Section - Bottom half */}
-              <div className="p-6 text-center">
+              <div className="p-6 text-center flex flex-col justify-center">
                 <h3 className="text-xl font-bold text-gray-900 mb-1">Alessandra</h3>
                 <p className="text-sm text-blue-600 font-semibold mb-3">Energy Consultant</p>
                 <p className="text-gray-600 text-sm leading-relaxed">
@@ -1957,17 +1957,17 @@ export default function Landing() {
             {/* Calogero Card */}
             <Card className="border-0 bg-white/80 backdrop-blur-sm shadow-xl overflow-hidden">
               {/* Photo Section - Takes up entire top half */}
-              <div className="h-64 relative">
-                <img 
-                  src="/calogero.png" 
-                  alt="Calogero - Founder & CEO" 
-                  className="w-full h-full object-cover"
-                />
-                {/* Optional overlay for better text readability if needed */}
-                <div className="absolute inset-0 bg-black/10"></div>
+              <div className="h-64 flex items-center justify-center p-4 bg-gradient-to-br from-green-50/20 to-white">
+                <div className="w-60 h-60 relative">
+                  <img 
+                    src="/calogero.png" 
+                    alt="Calogero - Founder & CEO" 
+                    className="w-full h-full object-cover rounded-full border-4 border-white shadow-2xl"
+                  />
+                </div>
               </div>
               {/* Content Section - Bottom half */}
-              <div className="p-6 text-center">
+              <div className="p-6 text-center flex flex-col justify-center">
                 <h3 className="text-xl font-bold text-gray-900 mb-1">Calogero</h3>
                 <p className="text-sm text-blue-600 font-semibold mb-3">Founder & CEO</p>
                 <p className="text-gray-600 text-sm leading-relaxed">
