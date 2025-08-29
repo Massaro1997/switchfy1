@@ -1241,77 +1241,60 @@ export default function Landing() {
             </Card>
           </div>
 
-          {/* Why Choose Us Section - Enhanced Beautiful Version */}
-          <div className="relative mb-12">
-            {/* Background Pattern */}
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-50/40 via-white to-green-50/40 rounded-3xl"></div>
-            
-            <Card className="border-0 bg-white/80 backdrop-blur-sm p-8 md:p-12 shadow-2xl relative overflow-hidden">
-              {/* Decorative Elements */}
-              <div className="absolute -top-6 -right-6 w-32 h-32 bg-gradient-to-br from-blue-200/20 to-green-200/20 rounded-full blur-2xl"></div>
-              <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-br from-green-200/20 to-blue-200/20 rounded-full blur-xl"></div>
-              
-              <div className="grid gap-12 lg:grid-cols-2 items-center relative z-10">
+          {/* Why Choose Us Section - Clean & Professional */}
+          <div className="mb-16">
+            <Card className="border-0 bg-white p-8 md:p-12 shadow-lg">
+              <div className="grid gap-12 lg:grid-cols-2 items-center">
                 <div>
-                  <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-100/50 to-green-100/50 px-4 py-2 rounded-full mb-6">
-                    <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                    <span className="text-sm font-bold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
-                      ⭐ Perché Switchfy
+                  <div className="inline-flex items-center gap-2 bg-blue-50 px-4 py-2 rounded-full mb-6">
+                    <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
+                    <span className="text-sm font-semibold text-blue-600">
+                      Perché Switchfy
                     </span>
                   </div>
                   
-                  <h3 className="text-3xl md:text-4xl font-black text-gray-900 mb-6 leading-tight">
-                    I nostri <span className="bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">vantaggi</span>
+                  <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
+                    I nostri vantaggi
                   </h3>
                   
                   <div className="space-y-6">
-                    <div className="group hover:bg-white/50 p-4 rounded-2xl transition-all duration-300 hover:shadow-lg border border-transparent hover:border-blue-100/50">
-                      <div className="flex items-start gap-4">
-                        <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-110 transition-all duration-300">
-                          <Check className="h-6 w-6 text-white" />
-                        </div>
-                        <div className="flex-1">
-                          <h4 className="text-lg font-bold text-gray-900 mb-2">Esperti del mercato tedesco</h4>
-                          <p className="text-gray-600 leading-relaxed">Il nostro team conosce ogni fornitore, tariffa e regolamentazione del mercato energetico tedesco</p>
-                        </div>
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <Check className="h-6 w-6 text-white" />
+                      </div>
+                      <div>
+                        <h4 className="text-lg font-bold text-gray-900 mb-2">Esperti del mercato tedesco</h4>
+                        <p className="text-gray-600 leading-relaxed">Il nostro team conosce ogni fornitore, tariffa e regolamentazione del mercato energetico tedesco</p>
                       </div>
                     </div>
                     
-                    <div className="group hover:bg-white/50 p-4 rounded-2xl transition-all duration-300 hover:shadow-lg border border-transparent hover:border-green-100/50">
-                      <div className="flex items-start gap-4">
-                        <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-110 transition-all duration-300">
-                          <Sparkles className="h-6 w-6 text-white" />
-                        </div>
-                        <div className="flex-1">
-                          <h4 className="text-lg font-bold text-gray-900 mb-2">Algoritmo proprietario</h4>
-                          <p className="text-gray-600 leading-relaxed">Analizziamo non solo il prezzo base ma anche bonus, sconti e tutte le condizioni nascoste</p>
-                        </div>
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <Sparkles className="h-6 w-6 text-white" />
+                      </div>
+                      <div>
+                        <h4 className="text-lg font-bold text-gray-900 mb-2">Algoritmo proprietario</h4>
+                        <p className="text-gray-600 leading-relaxed">Analizziamo non solo il prezzo base ma anche bonus, sconti e tutte le condizioni nascoste</p>
                       </div>
                     </div>
                     
-                    <div className="group hover:bg-white/50 p-4 rounded-2xl transition-all duration-300 hover:shadow-lg border border-transparent hover:border-blue-100/50">
-                      <div className="flex items-start gap-4">
-                        <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-110 transition-all duration-300">
-                          <Shield className="h-6 w-6 text-white" />
-                        </div>
-                        <div className="flex-1">
-                          <h4 className="text-lg font-bold text-gray-900 mb-2">Supporto in italiano</h4>
-                          <p className="text-gray-600 leading-relaxed">Assistenza dedicata e personalizzata per la comunità italiana che vive in Germania</p>
-                        </div>
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <Shield className="h-6 w-6 text-white" />
+                      </div>
+                      <div>
+                        <h4 className="text-lg font-bold text-gray-900 mb-2">Supporto in italiano</h4>
+                        <p className="text-gray-600 leading-relaxed">Assistenza dedicata e personalizzata per la comunità italiana che vive in Germania</p>
                       </div>
                     </div>
                   </div>
                   
-                  {/* Trust Badge */}
-                  <div className="mt-8 p-4 bg-gradient-to-r from-blue-50/50 to-green-50/50 rounded-2xl border border-blue-100/50">
+                  {/* Simple Trust Badge */}
+                  <div className="mt-8 p-4 bg-gray-50 rounded-xl">
                     <div className="flex items-center gap-3">
-                      <div className="flex -space-x-2">
-                        <div className="w-8 h-8 bg-blue-500 rounded-full border-2 border-white"></div>
-                        <div className="w-8 h-8 bg-green-500 rounded-full border-2 border-white"></div>
-                        <div className="w-8 h-8 bg-purple-500 rounded-full border-2 border-white"></div>
-                      </div>
+                      <div className="text-blue-600 font-bold text-2xl">5.000+</div>
                       <div>
-                        <p className="text-sm font-bold text-gray-900">Più di 5.000 famiglie servite</p>
+                        <p className="text-sm font-bold text-gray-900">Famiglie servite</p>
                         <p className="text-xs text-gray-600">Con un risparmio medio di €650/anno</p>
                       </div>
                     </div>
@@ -1319,41 +1302,33 @@ export default function Landing() {
                 </div>
                 
                 <div className="relative">
-                  <div className="relative rounded-3xl overflow-hidden shadow-2xl group">
+                  <div className="rounded-2xl overflow-hidden shadow-xl">
                     <img 
                       src="/famiglia-seduta-sul-prato.jpg" 
                       alt="Happy family saving on energy bills" 
-                      className="w-full h-96 object-cover group-hover:scale-105 transition-transform duration-700"
+                      className="w-full h-96 object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-blue-600/90 via-blue-600/20 to-transparent"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                     
-                    {/* Floating Stats Card */}
+                    {/* Simple Stats Card */}
                     <div className="absolute top-6 right-6">
-                      <div className="bg-white/90 backdrop-blur-sm p-4 rounded-2xl shadow-xl">
+                      <div className="bg-white p-4 rounded-xl shadow-lg">
                         <div className="text-center">
-                          <div className="text-2xl font-black text-green-600">€650</div>
+                          <div className="text-2xl font-bold text-blue-600">€650</div>
                           <div className="text-xs font-semibold text-gray-600">risparmio medio</div>
                         </div>
                       </div>
                     </div>
                     
-                    {/* Bottom Content */}
+                    {/* Simple Bottom Content */}
                     <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                      <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-3 py-1.5 rounded-full mb-3">
-                        <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                        <span className="text-xs font-bold">Testimonianza Vera</span>
-                      </div>
-                      <h4 className="text-xl font-bold mb-2">Unisciti a migliaia di clienti felici</h4>
-                      <p className="text-sm text-white/90 mb-3">"Finalmente ho capito come risparmiare davvero in Germania!"</p>
-                      
-                      {/* Rating Stars */}
+                      <h4 className="text-xl font-bold mb-2">Clienti soddisfatti</h4>
+                      <p className="text-sm text-white/90 mb-3">"Finalmente ho capito come risparmiare in Germania!"</p>
                       <div className="flex items-center gap-1">
                         {[...Array(5)].map((_, i) => (
-                          <div key={i} className="w-4 h-4 bg-yellow-400 rounded-full flex items-center justify-center">
-                            <span className="text-xs text-yellow-800">★</span>
-                          </div>
+                          <span key={i} className="text-yellow-400 text-sm">★</span>
                         ))}
-                        <span className="text-xs font-semibold ml-2">4.9/5 su Google</span>
+                        <span className="text-xs font-semibold ml-2">4.9/5 rating</span>
                       </div>
                     </div>
                   </div>
