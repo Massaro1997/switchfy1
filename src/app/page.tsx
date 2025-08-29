@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { Check, ChevronRight, Shield, Sparkles, Play, FileText, HelpCircle } from "lucide-react";
 import { api } from "@/services/api";
 import { trackEvent, ANALYTICS_EVENTS, useAnalytics } from "@/services/analytics";
+import { useLanguage } from "@/hooks/useLanguage";
 
 // --------- Config ---------
 
@@ -392,7 +393,7 @@ function QuickQuizForm({ onShowComparator }: { onShowComparator: (data: {cap: st
               </span>
             ) : (
               <div className="flex items-center justify-center gap-3">
-                <span className="text-sm sm:text-lg md:text-xl font-black text-center leading-tight">Scopri subito quanto puoi risparmiare</span>
+                <span className="text-sm sm:text-lg md:text-xl font-black text-center leading-tight">{t('heroButton')}</span>
                 <div className="w-6 h-6 sm:w-8 sm:h-8 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-all group-hover:scale-110">
                   <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-0.5 transition-transform" />
                 </div>
@@ -880,6 +881,7 @@ export default function Landing() {
   const [comparatorData, setComparatorData] = useState<{cap: string; persone: string; abitazione: string} | null>(null);
   
   const { trackEvent: track } = useAnalytics();
+  const { language, toggleLanguage, t } = useLanguage();
 
   // Track page visit on component mount
   useEffect(() => {
@@ -1012,13 +1014,19 @@ export default function Landing() {
           </a>
           <nav className="hidden items-center gap-8 md:flex">
             <a href="#come-funziona" className="text-gray-700 hover:text-gray-700 font-medium transition-colors relative group">
-              Come funziona
+              {language === 'it' ? 'Come funziona' : 'Wie es funktioniert'}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 via-blue-500 to-green-500 group-hover:w-full transition-all"></span>
             </a>
             <a href="#faq" className="text-gray-700 hover:text-gray-700 font-medium transition-colors relative group">
               FAQ
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 via-blue-500 to-green-500 group-hover:w-full transition-all"></span>
             </a>
+            <button 
+              onClick={toggleLanguage}
+              className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-blue-50 to-green-50 hover:from-blue-100 hover:to-green-100 rounded-lg transition-all hover:scale-105 border border-gray-200/50"
+            >
+              <span className="text-sm font-medium text-gray-700">{t('languageSwitch')}</span>
+            </button>
             <a href="#legal" className="text-gray-700 hover:text-gray-700 font-medium transition-colors relative group">
               Privacy & Impressum
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 via-blue-500 to-green-500 group-hover:w-full transition-all"></span>
@@ -1054,20 +1062,20 @@ export default function Landing() {
           <div className="space-y-4 md:space-y-6">
             <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-white/90 to-white/80 backdrop-blur-md px-4 py-2 text-sm font-medium text-blue-700 shadow-lg border border-white/30">
               <div className="w-2 h-2 bg-gradient-to-r from-blue-600 to-green-600 rounded-full animate-pulse"></div>
-              Digitale • Veloce • Trasparente
+              {language === 'it' ? 'Digitale • Veloce • Trasparente' : 'Digital • Schnell • Transparent'}
             </div>
             <div>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight mb-4 leading-tight">
                 <span className="text-white drop-shadow-2xl">
-                  Taglia la tua 
+                  {language === 'it' ? 'Taglia la tua' : 'Senken Sie Ihre'} 
                 </span>
                 <br />
                 <span className="bg-gradient-to-r from-blue-200 via-green-200 to-blue-200 bg-clip-text text-transparent drop-shadow-2xl">
-                  bolletta
+                  {language === 'it' ? 'bolletta' : 'Rechnung'}
                 </span>
                 <br />
                 <span className="text-white/90 drop-shadow-2xl text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl">
-                  in 60 secondi
+                  {language === 'it' ? 'in 60 secondi' : 'in 60 Sekunden'}
                 </span>
               </h1>
               <div className="flex items-center gap-2 mb-6">
@@ -1076,21 +1084,21 @@ export default function Landing() {
               </div>
             </div>
             <h2 className="text-lg md:text-xl text-white/95 drop-shadow-lg leading-relaxed mb-4 md:mb-6 max-w-3xl">
-              <strong className="text-white">Stop alle bollette che succhiano il portafoglio.</strong><br />
-              Rispondi a poche domande, ricevi la tua offerta personalizzata e firma online senza stress.
+              <strong className="text-white">{language === 'it' ? 'Stop alle bollette che succhiano il portafoglio.' : 'Schluss mit Rechnungen, die Ihr Budget belasten.'}</strong><br />
+              {language === 'it' ? 'Rispondi a poche domande, ricevi la tua offerta personalizzata e firma online senza stress.' : 'Beantworten Sie einige Fragen, erhalten Sie Ihr personalisiertes Angebot und unterschreiben Sie online ohne Stress.'}
             </h2>
             <div className="flex flex-wrap items-center gap-4 md:gap-6 text-sm md:text-lg text-white/95 mb-4 md:mb-6">
               <div className="flex items-center gap-2">
                 <Check className="h-5 w-5 text-green-300" />
-                <span className="font-semibold">Gratis</span>
+                <span className="font-semibold">{language === 'it' ? 'Gratis' : 'Kostenlos'}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Shield className="h-5 w-5 text-blue-300" />
-                <span className="font-semibold">Nessun impegno</span>
+                <span className="font-semibold">{language === 'it' ? 'Nessun impegno' : 'Keine Verpflichtung'}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Sparkles className="h-5 w-5 text-yellow-300" />
-                <span className="font-semibold">Conformità GDPR Germania</span>
+                <span className="font-semibold">{language === 'it' ? 'Conformità GDPR Germania' : 'GDPR-konform Deutschland'}</span>
               </div>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
@@ -1282,10 +1290,10 @@ export default function Landing() {
                   <div className="absolute bottom-0 left-0 right-0 p-6 text-white relative z-10">
                     <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full mb-3">
                       <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                      <span className="text-xs font-semibold">500+ Famiglie Soddisfatte</span>
+                      <span className="text-xs font-semibold">{t('testimonialBadge')}</span>
                     </div>
                     <h3 className="text-xl font-bold mb-2">Unisciti a migliaia di clienti felici</h3>
-                    <p className="text-sm text-white/90">Famiglie italiane in Germania risparmiano €650 l'anno</p>
+                    <p className="text-sm text-white/90">{t('testimonialDesc')}</p>
                   </div>
                 </div>
               </div>
@@ -1350,10 +1358,10 @@ export default function Landing() {
                   </span>
                 </div>
                 <h3 className="text-3xl md:text-4xl font-black text-gray-900 mb-4">
-                  Risparmia in <span className="bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">3 semplici passi</span>
+                  {t('processTitle')}
                 </h3>
                 <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-                  Dal quiz alle bollette più leggere: il nostro processo è pensato per essere veloce, sicuro e completamente automatizzato
+                  {t('processSubtitle')}
                 </p>
               </div>
 
@@ -1779,8 +1787,7 @@ export default function Landing() {
                 </h3>
                 
                 <p className="text-gray-600 mb-6 leading-relaxed">
-                  Hai domande specifiche o vuoi una consulenza personalizzata? Alessandra, la nostra energy consultant, 
-                  ti aiuterà a trovare la soluzione perfetta per le tue esigenze di luce e gas.
+                  {language === 'it' ? 'Hai domande specifiche o vuoi una consulenza personalizzata? Alessandra, la nostra energy consultant, ti aiuterà a trovare la soluzione perfetta per le tue esigenze di luce e gas.' : 'Haben Sie spezielle Fragen oder wünschen eine persönliche Beratung? Alessandra, unsere Energieberaterin, hilft Ihnen dabei, die perfekte Lösung für Ihre Strom- und Gasbedürfnisse zu finden.'}
                 </p>
 
                 {/* Contact Form */}
@@ -1867,7 +1874,7 @@ export default function Landing() {
                       ))}
                     </div>
                     <span className="text-xs text-gray-600">
-                      "Grazie ad Alessandra ho risparmiato €600 l'anno!" - <strong>Maria R.</strong>
+                      {language === 'it' ? '"Grazie ad Alessandra ho risparmiato €600 l\'anno!" - Maria R.' : '"Dank Alessandra spare ich €600 pro Jahr!" - Maria R.'}
                     </span>
                   </div>
                 </div>
@@ -1908,8 +1915,8 @@ export default function Landing() {
               </div>
               {/* Content Section - Bottom half */}
               <div className="p-6 text-center flex flex-col justify-center">
-                <h3 className="text-xl font-bold text-gray-900 mb-1">Alessandra</h3>
-                <p className="text-sm text-gray-700 font-semibold mb-3">Energy Consultant</p>
+                <h3 className="text-xl font-bold text-gray-900 mb-1">{language === 'it' ? 'Alessandra' : 'Alessandra'}</h3>
+                <p className="text-sm text-gray-700 font-semibold mb-3">{t('teamAlessandra').split(' - ')[1]}</p>
                 <p className="text-gray-600 text-sm leading-relaxed">
                   Esperta del mercato energetico tedesco con oltre 5 anni di esperienza. 
                   Ha aiutato migliaia di famiglie italiane a trovare le migliori tariffe energia.
@@ -1942,11 +1949,10 @@ export default function Landing() {
               </div>
               {/* Content Section - Bottom half */}
               <div className="p-6 text-center flex flex-col justify-center">
-                <h3 className="text-xl font-bold text-gray-900 mb-1">Calogero</h3>
-                <p className="text-sm text-gray-700 font-semibold mb-3">Founder & CEO</p>
+                <h3 className="text-xl font-bold text-gray-900 mb-1">{language === 'it' ? 'Calogero' : 'Calogero'}</h3>
+                <p className="text-sm text-gray-700 font-semibold mb-3">{t('teamCalogero').split(' - ')[1]}</p>
                 <p className="text-gray-600 text-sm leading-relaxed">
-                  Fondatore di Switchfy, vive in Germania da anni e conosce perfettamente 
-                  le sfide degli italiani nel mercato energetico tedesco. La sua missione: semplificare il risparmio.
+                  {language === 'it' ? 'Fondatore di Switchfy, vive in Germania da anni e conosce perfettamente le sfide degli italiani nel mercato energetico tedesco. La sua missione: semplificare il risparmio.' : 'Gründer von Switchfy, lebt seit Jahren in Deutschland und kennt die Herausforderungen der Italiener im deutschen Energiemarkt perfekt. Seine Mission: das Sparen zu vereinfachen.'}
                 </p>
                 <div className="mt-4 flex flex-col items-center gap-2">
                   <div className="flex items-center gap-1">
@@ -1956,7 +1962,7 @@ export default function Landing() {
                       </div>
                     ))}
                   </div>
-                  <span className="text-sm text-gray-700 font-medium">500+ clienti aiutati</span>
+                  <span className="text-sm text-gray-700 font-medium">{t('statsClientsHelped')}</span>
                 </div>
               </div>
             </Card>
@@ -1989,8 +1995,7 @@ export default function Landing() {
                 ))}
               </div>
               <blockquote className="text-gray-700 mb-6 leading-relaxed">
-                "Grazie ad Alessandra e al team di Switchfy ho finalmente capito come funziona il mercato energetico tedesco. 
-                Mi hanno seguito passo passo e ora risparmio €850 l'anno sulla bolletta!"
+                {language === 'it' ? '"Grazie ad Alessandra e al team di Switchfy ho finalmente capito come funziona il mercato energetico tedesco. Mi hanno seguito passo passo e ora risparmio €850 l\'anno sulla bolletta!"' : '"Dank Alessandra und dem Switchfy-Team habe ich endlich verstanden, wie der deutsche Energiemarkt funktioniert. Sie haben mich Schritt für Schritt begleitet und jetzt spare ich €850 pro Jahr bei der Rechnung!"'}
               </blockquote>
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-green-600 rounded-full flex items-center justify-center">
@@ -2060,7 +2065,7 @@ export default function Landing() {
             </Card>
             <Card className="border-0 bg-gradient-to-br from-blue-50/80 to-green-50/80 backdrop-blur-sm p-4 text-center shadow-lg">
               <div className="text-2xl font-black bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent mb-2">€650</div>
-              <p className="text-sm text-gray-700 font-medium">Risparmio medio annuo</p>
+              <p className="text-sm text-gray-700 font-medium">{t('statsAverageSavings')}</p>
             </Card>
             <Card className="border-0 bg-gradient-to-br from-blue-50/80 to-green-50/80 backdrop-blur-sm p-4 text-center shadow-lg">
               <div className="text-2xl font-black bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent mb-2">4.8/5</div>
@@ -2147,10 +2152,10 @@ export default function Landing() {
                 </div>
 
                 <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4">
-                  Sei pronto a risparmiare <span className="bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">€650 l'anno?</span>
+                  {language === 'it' ? 'Sei pronto a risparmiare ' : 'Sind Sie bereit zu sparen '}<span className="bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">€650 {language === 'it' ? "l'anno?" : 'pro Jahr?'}</span>
                 </h2>
                 <p className="text-lg text-gray-700 mb-8 max-w-2xl mx-auto leading-relaxed">
-                  Più di 5.000 famiglie italiane in Germania stanno già risparmiando centinaia di euro ogni anno. 
+                  {language === 'it' ? 'Più di 5.000 famiglie italiane in Germania stanno già risparmiando centinaia di euro ogni anno.' : 'Mehr als 5.000 italienische Familien in Deutschland sparen bereits Hunderte von Euro pro Jahr.'} 
                   <strong className="text-gray-600"> Il tuo quiz ti aspetta.</strong>
                 </p>
 
@@ -2160,7 +2165,7 @@ export default function Landing() {
                     onClick={() => setQuizOpen(true)}
                   >
                     <span className="flex items-center gap-3">
-                      <span className="!text-white">INIZIA IL QUIZ ORA</span>
+                      <span className="!text-white">{t('ctaButton').replace('🚀 ', '')}</span>
                       <div className="w-7 h-7 bg-white/30 rounded-full flex items-center justify-center">
                         <ChevronRight className="h-5 w-5" />
                       </div>
@@ -2291,8 +2296,8 @@ export default function Landing() {
             </div>
 
             <h2 className="text-4xl md:text-5xl font-black mb-6">
-              Sei pronto a risparmiare?<br />
-              <span className="text-white">Il tuo quiz ti aspetta.</span>
+              {t('ctaTitle')}<br />
+              <span className="text-white">{t('ctaSubtitle')}</span>
             </h2>
 
             <p className="text-xl mb-8 max-w-2xl mx-auto leading-relaxed">
@@ -2306,7 +2311,7 @@ export default function Landing() {
                 onClick={() => setQuizOpen(true)}
               >
                 <span className="flex items-center gap-4">
-                  🚀 <span className="!text-white">INIZIA IL QUIZ ORA</span>
+                  {t('ctaButton')}
                   <div className="w-8 h-8 bg-white/30 rounded-full flex items-center justify-center">
                     <ChevronRight className="h-5 w-5" />
                   </div>
