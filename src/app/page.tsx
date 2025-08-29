@@ -1922,7 +1922,7 @@ export default function Landing() {
             </p>
           </div>
           
-          <div className="grid gap-8 md:grid-cols-2 max-w-4xl mx-auto">
+          <div className="grid gap-10 md:grid-cols-2 max-w-6xl mx-auto">
             {/* Alessandra Card */}
             <Card className="border-0 bg-white/80 backdrop-blur-sm shadow-xl overflow-hidden">
               {/* Photo Section - Takes up entire top half */}
@@ -1943,13 +1943,15 @@ export default function Landing() {
                   Esperta del mercato energetico tedesco con oltre 5 anni di esperienza. 
                   Ha aiutato migliaia di famiglie italiane a trovare le migliori tariffe energia.
                 </p>
-                <div className="mt-4 flex items-center gap-1">
-                  {[...Array(5)].map((_, i) => (
-                    <div key={i} className="w-3 h-3 bg-gradient-to-r from-blue-400 to-green-400 rounded-full">
-                      <span className="text-white text-xs flex items-center justify-center">★</span>
-                    </div>
-                  ))}
-                  <span className="text-xs text-gray-600 ml-2">4.9/5 recensioni</span>
+                <div className="mt-4 flex flex-col items-center gap-2">
+                  <div className="flex items-center gap-1">
+                    {[...Array(5)].map((_, i) => (
+                      <div key={i} className="w-4 h-4 bg-gradient-to-r from-blue-400 to-green-400 rounded-full">
+                        <span className="text-white text-xs flex items-center justify-center">★</span>
+                      </div>
+                    ))}
+                  </div>
+                  <span className="text-sm text-gray-700 font-medium">4.9/5 recensioni</span>
                 </div>
               </div>
             </Card>
@@ -1963,6 +1965,7 @@ export default function Landing() {
                     src="/calogero.png" 
                     alt="Calogero - Founder & CEO" 
                     className="w-full h-full object-cover rounded-full border-4 border-white shadow-2xl"
+                    style={{objectPosition: '-20px center'}}
                   />
                 </div>
               </div>
@@ -1974,13 +1977,15 @@ export default function Landing() {
                   Fondatore di Switchfy, vive in Germania da anni e conosce perfettamente 
                   le sfide degli italiani nel mercato energetico tedesco. La sua missione: semplificare il risparmio.
                 </p>
-                <div className="mt-4 flex items-center gap-1">
-                  {[...Array(5)].map((_, i) => (
-                    <div key={i} className="w-3 h-3 bg-gradient-to-r from-blue-400 to-green-400 rounded-full">
-                      <span className="text-white text-xs flex items-center justify-center">★</span>
-                    </div>
-                  ))}
-                  <span className="text-xs text-gray-600 ml-2">5.000+ clienti aiutati</span>
+                <div className="mt-4 flex flex-col items-center gap-2">
+                  <div className="flex items-center gap-1">
+                    {[...Array(5)].map((_, i) => (
+                      <div key={i} className="w-4 h-4 bg-gradient-to-r from-blue-400 to-green-400 rounded-full">
+                        <span className="text-white text-xs flex items-center justify-center">★</span>
+                      </div>
+                    ))}
+                  </div>
+                  <span className="text-sm text-gray-700 font-medium">5.000+ clienti aiutati</span>
                 </div>
               </div>
             </Card>
