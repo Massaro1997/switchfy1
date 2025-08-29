@@ -5,6 +5,7 @@ import { Check, ChevronRight, Shield, Sparkles, Play, FileText, HelpCircle } fro
 import { api } from "@/services/api";
 import { trackEvent, ANALYTICS_EVENTS, useAnalytics } from "@/services/analytics";
 import { useLanguage } from "@/hooks/useLanguage";
+import type { TranslationKey } from "@/lib/translations";
 
 // --------- Config ---------
 
@@ -236,7 +237,7 @@ function ComparisonPopup({
 }
 
 // --------- Quick Quiz Form Component for Hero ---------
-function QuickQuizForm({ onShowComparator }: { onShowComparator: (data: {cap: string; persone: string; abitazione: string}) => void }) {
+function QuickQuizForm({ onShowComparator, t, language }: { onShowComparator: (data: {cap: string; persone: string; abitazione: string}) => void, t: (key: TranslationKey) => string, language: string }) {
   const [cap, setCap] = useState('');
   const [persone, setPersone] = useState('');
   const [abitazione, setAbitazione] = useState('');
@@ -246,7 +247,7 @@ function QuickQuizForm({ onShowComparator }: { onShowComparator: (data: {cap: st
     e.preventDefault();
     
     if (!cap || !persone || !abitazione) {
-      alert('Compila tutti i campi per continuare');
+      alert(t('quizFormFillAll'));
       return;
     }
 
@@ -281,7 +282,7 @@ function QuickQuizForm({ onShowComparator }: { onShowComparator: (data: {cap: st
       <div className="mb-6">
         <div className="text-center mb-4">
           <h4 className="text-xl font-black bg-gradient-to-r from-blue-700 to-green-700 bg-clip-text text-transparent">
-            Dove abiti in Germania?
+            {t('quizFormLocation')}
           </h4>
         </div>
         <div className="relative group">
@@ -289,7 +290,7 @@ function QuickQuizForm({ onShowComparator }: { onShowComparator: (data: {cap: st
             type="text"
             value={cap}
             onChange={(e) => setCap(e.target.value)}
-            placeholder="es. 10115 (Berlino)"
+            placeholder={t('quizFormLocationPlaceholder')}
             maxLength={5}
             pattern="[0-9]{5}"
             className="w-full px-6 py-4 bg-white border-2 border-blue-200/60 rounded-2xl focus:ring-4 focus:ring-green-500/20 focus:border-green-500 focus:shadow-lg transition-all duration-300 text-center font-bold text-xl tracking-wider group-hover:border-green-300"
@@ -389,7 +390,7 @@ function QuickQuizForm({ onShowComparator }: { onShowComparator: (data: {cap: st
             {loading ? (
               <span className="flex items-center justify-center gap-3">
                 <div className="w-6 h-6 border-3 border-white/30 border-t-white rounded-full animate-spin"></div>
-                <span className="animate-pulse text-sm sm:text-base">Calcolo in corso...</span>
+                <span className="animate-pulse text-sm sm:text-base">{t('loadingCalculation')}</span>
               </span>
             ) : (
               <div className="flex items-center justify-center gap-3">
@@ -413,7 +414,7 @@ function QuickQuizForm({ onShowComparator }: { onShowComparator: (data: {cap: st
 }
 
 // --------- Simple Working Quiz ---------
-function QuizWizard({ onClose }: { onClose: () => void }) {
+function QuizWizard({ onClose, t }: { onClose: () => void, t: (key: TranslationKey) => string }) {
   const [step, setStep] = useState(0);
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
@@ -658,7 +659,7 @@ function QuizWizard({ onClose }: { onClose: () => void }) {
                   }} className="space-y-4">
                     <input
                       type="text"
-                      placeholder="es. 10115 (Berlino)"
+                      placeholder={t('quizFormLocationPlaceholder')}
                       maxLength={5}
                       pattern="[0-9]{5}"
                       className="w-full rounded-2xl border-2 border-gray-200 px-6 py-4 text-lg outline-none focus:border-green-500 focus:ring-4 focus:ring-green-500/10 transition-all text-center"
@@ -1156,7 +1157,7 @@ export default function Landing() {
                   </div>
 
                   {/* Enhanced Quiz Form */}
-                  <QuickQuizForm onShowComparator={(data) => {
+                  <QuickQuizForm t={t} language={language} onShowComparator={(data) => {
                     setComparatorData(data);
                     setComparatorOpen(true);
                   }} />
@@ -2412,7 +2413,7 @@ export default function Landing() {
         </Container>
       </footer>
 
-      {quizOpen && <QuizWizard onClose={() => setQuizOpen(false)} />}
+      {quizOpen && <QuizWizard onClose={() => setQuizOpen(false)} t={t} />}
       
       <ComparisonPopup 
         isOpen={comparatorOpen}

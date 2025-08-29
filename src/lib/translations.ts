@@ -117,6 +117,15 @@ export const translations = {
     quizTariffFixed: "Prezzo fisso",
     quizTariffVariable: "Prezzo variabile",
     quizTariffGreen: "Solo energia verde",
+    
+    // Quick Quiz Form
+    loadingCalculation: "Calcolo in corso...",
+    quizFormLocation: "Dove abiti in Germania?",
+    quizFormLocationPlaceholder: "es. 10115 (Berlino)",
+    quizFormPeople: "Quante persone vivono in casa?",
+    quizFormHouseType: "Che tipo di abitazione hai?",
+    quizFormFillAll: "Compila tutti i campi per continuare",
+    quizFormButton: "Scopri le Migliori Offerte",
   },
   de: {
     // Header & Navigation
@@ -236,6 +245,15 @@ export const translations = {
     quizTariffFixed: "Fester Preis",
     quizTariffVariable: "Variabler Preis",
     quizTariffGreen: "Nur grüne Energie",
+    
+    // Quick Quiz Form
+    loadingCalculation: "Berechnung läuft...",
+    quizFormLocation: "Wo leben Sie in Deutschland?",
+    quizFormLocationPlaceholder: "z.B. 10115 (Berlin)",
+    quizFormPeople: "Wie viele Personen leben in Ihrem Haushalt?",
+    quizFormHouseType: "Welche Art von Wohnung haben Sie?",
+    quizFormFillAll: "Bitte füllen Sie alle Felder aus, um fortzufahren",
+    quizFormButton: "Beste Angebote entdecken",
   }
 };
 
