@@ -1037,11 +1037,11 @@ export default function Landing() {
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 via-blue-500 to-green-500 group-hover:w-full transition-all"></span>
             </a>
             <Button className="bg-gradient-to-r from-blue-600 via-blue-500 to-green-500 !text-white hover:from-blue-700 hover:via-blue-600 hover:to-green-600 px-6 py-2.5 font-semibold shadow-md hover:shadow-lg transform hover:scale-105 transition-all" onClick={() => handleQuizStart('header')}>
-              {language === 'it' ? 'Inizia il quiz' : 'Quiz starten'}
+              {t('startQuiz')}
             </Button>
           </nav>
           <Button className="bg-gradient-to-r from-blue-600 via-blue-500 to-green-500 !text-white hover:from-blue-700 hover:via-blue-600 hover:to-green-600 px-4 py-2 font-semibold shadow-md md:hidden" onClick={() => setQuizOpen(true)}>
-            {language === 'it' ? 'Quiz' : 'Quiz'}
+            {t('quiz')}
           </Button>
         </Container>
       </header>
@@ -1067,20 +1067,20 @@ export default function Landing() {
           <div className="space-y-4 md:space-y-6">
             <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-white/90 to-white/80 backdrop-blur-md px-4 py-2 text-sm font-medium text-blue-700 shadow-lg border border-white/30">
               <div className="w-2 h-2 bg-gradient-to-r from-blue-600 to-green-600 rounded-full animate-pulse"></div>
-              {language === 'it' ? 'Digitale • Veloce • Trasparente' : 'Digital • Schnell • Transparent'}
+              {t('heroTagline')}
             </div>
             <div>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight mb-4 leading-tight">
                 <span className="text-white drop-shadow-2xl">
-                  {language === 'it' ? 'Taglia la tua' : 'Senken Sie Ihre'} 
+                  {t('heroMainTitle')} 
                 </span>
                 <br />
                 <span className="bg-gradient-to-r from-blue-200 via-green-200 to-blue-200 bg-clip-text text-transparent drop-shadow-2xl">
-                  {language === 'it' ? 'bolletta' : 'Rechnung'}
+                  {t('heroBill')}
                 </span>
                 <br />
                 <span className="text-white/90 drop-shadow-2xl text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl">
-                  {language === 'it' ? 'in 60 secondi' : 'in 60 Sekunden'}
+                  {t('heroTime')}
                 </span>
               </h1>
               <div className="flex items-center gap-2 mb-6">
@@ -1089,21 +1089,21 @@ export default function Landing() {
               </div>
             </div>
             <h2 className="text-lg md:text-xl text-white/95 drop-shadow-lg leading-relaxed mb-4 md:mb-6 max-w-3xl">
-              <strong className="text-white">{language === 'it' ? 'Stop alle bollette che succhiano il portafoglio.' : 'Schluss mit Rechnungen, die Ihr Budget belasten.'}</strong><br />
-              {language === 'it' ? 'Rispondi a poche domande, ricevi la tua offerta personalizzata e firma online senza stress.' : 'Beantworten Sie einige Fragen, erhalten Sie Ihr personalisiertes Angebot und unterschreiben Sie online ohne Stress.'}
+              <strong className="text-white">{t('heroStopBills')}</strong><br />
+              {t('heroDescription')}
             </h2>
             <div className="flex flex-wrap items-center gap-4 md:gap-6 text-sm md:text-lg text-white/95 mb-4 md:mb-6">
               <div className="flex items-center gap-2">
                 <Check className="h-5 w-5 text-green-300" />
-                <span className="font-semibold">{language === 'it' ? 'Gratis' : 'Kostenlos'}</span>
+                <span className="font-semibold">{t('free')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Shield className="h-5 w-5 text-blue-300" />
-                <span className="font-semibold">{language === 'it' ? 'Nessun impegno' : 'Keine Verpflichtung'}</span>
+                <span className="font-semibold">{t('noCommitment')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Sparkles className="h-5 w-5 text-yellow-300" />
-                <span className="font-semibold">{language === 'it' ? 'Conformità GDPR Germania' : 'GDPR-konform Deutschland'}</span>
+                <span className="font-semibold">{t('gdprCompliant')}</span>
               </div>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">

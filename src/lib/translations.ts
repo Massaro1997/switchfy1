@@ -4,10 +4,19 @@ export const translations = {
     languageSwitch: "🇩🇪 Deutsch",
     
     // Hero Section
+    heroTagline: "Digitale • Veloce • Trasparente",
+    heroMainTitle: "Taglia la tua",
+    heroBill: "bolletta", 
+    heroTime: "in 60 secondi",
     heroTitle: "Risparmia fino a €650 all'anno su luce e gas",
     heroSubtitle: "Confronta le migliori offerte energetiche in Germania e trova la tariffa perfetta per te in soli 2 minuti",
-    heroButton: "Scopri subito quanto puoi risparmiare oggi",
+    heroButton: "Scopri subito quanto puoi risparmiare oggi", 
     heroVideoAlt: "Energia rinnovabile per la tua casa",
+    heroStopBills: "Stop alle bollette che succhiano il portafoglio.",
+    heroDescription: "Rispondi a poche domande, ricevi la tua offerta personalizzata e firma online senza stress.",
+    free: "Gratis",
+    startQuiz: "Inizia il quiz",
+    quiz: "Quiz",
     
     // Statistics
     statsClientsHelped: "500+ clienti aiutati",
@@ -208,10 +217,19 @@ export const translations = {
     languageSwitch: "🇮🇹 Italiano",
     
     // Hero Section
+    heroTagline: "Digital • Schnell • Transparent",
+    heroMainTitle: "Senken Sie Ihre",
+    heroBill: "Rechnung",
+    heroTime: "in 60 Sekunden",
     heroTitle: "Sparen Sie bis zu 650€ pro Jahr bei Strom und Gas",
     heroSubtitle: "Vergleichen Sie die besten Energieangebote in Deutschland und finden Sie den perfekten Tarif für Sie in nur 2 Minuten",
     heroButton: "Entdecken Sie jetzt, wie viel Sie heute sparen können",
     heroVideoAlt: "Erneuerbare Energie für Ihr Zuhause",
+    heroStopBills: "Schluss mit Rechnungen, die Ihr Budget belasten.",
+    heroDescription: "Beantworten Sie einige Fragen, erhalten Sie Ihr personalisiertes Angebot und unterschreiben Sie online ohne Stress.",
+    free: "Kostenlos",
+    startQuiz: "Quiz starten",
+    quiz: "Quiz",
     
     // Statistics
     statsClientsHelped: "500+ geholfen Kunden",
