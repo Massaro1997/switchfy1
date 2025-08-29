@@ -54,7 +54,7 @@ function ComparisonPopup({
   isOpen: boolean; 
   onClose: () => void; 
   data: {cap: string; persone: string; abitazione: string} | null;
-  t: (key: TranslationKey) => string;
+  t: (key: TranslationKey, params?: Record<string, string | number>) => string;
   language: string;
 }) {
   if (!isOpen || !data) return null;
@@ -77,7 +77,7 @@ function ComparisonPopup({
       ...provider,
       monthlyPrice: basePrice + (index * 15) + Math.floor(Math.random() * 20),
       annualSavings: 850 - (index * 100) + Math.floor(Math.random() * 100),
-      badge: index === 0 ? (language === 'it' ? 'Più conveniente' : 'Am günstigsten') : index === 1 ? (language === 'it' ? 'Più popolare' : 'Beliebtester') : null,
+      badge: index === 0 ? t('mostConvenient') : index === 1 ? t('mostPopular') : null,
       bonus: index < 2 ? `€${50 + index * 25} bonus` : null
     }));
   };
@@ -241,7 +241,7 @@ function ComparisonPopup({
 }
 
 // --------- Quick Quiz Form Component for Hero ---------
-function QuickQuizForm({ onShowComparator, t, language }: { onShowComparator: (data: {cap: string; persone: string; abitazione: string}) => void, t: (key: TranslationKey) => string, language: string }) {
+function QuickQuizForm({ onShowComparator, t, language }: { onShowComparator: (data: {cap: string; persone: string; abitazione: string}) => void, t: (key: TranslationKey, params?: Record<string, string | number>) => string, language: string }) {
   const [cap, setCap] = useState('');
   const [persone, setPersone] = useState('');
   const [abitazione, setAbitazione] = useState('');
@@ -274,7 +274,7 @@ function QuickQuizForm({ onShowComparator, t, language }: { onShowComparator: (d
       
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : t('calculationError');
-      alert(`${language === 'it' ? 'Errore' : 'Fehler'}: ${errorMessage}`);
+      alert(`${t('error')}: ${errorMessage}`);
     } finally {
       setLoading(false);
     }
@@ -418,7 +418,7 @@ function QuickQuizForm({ onShowComparator, t, language }: { onShowComparator: (d
 }
 
 // --------- Simple Working Quiz ---------
-function QuizWizard({ onClose, t, language }: { onClose: () => void, t: (key: TranslationKey) => string, language: string }) {
+function QuizWizard({ onClose, t, language }: { onClose: () => void, t: (key: TranslationKey, params?: Record<string, string | number>) => string, language: string }) {
   const [step, setStep] = useState(0);
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
@@ -575,8 +575,8 @@ function QuizWizard({ onClose, t, language }: { onClose: () => void, t: (key: Tr
         <div className="bg-gradient-to-r from-blue-600 via-blue-500 to-green-500 p-4 sm:p-6 rounded-t-3xl">
           <div className="flex items-center justify-between">
             <div className="text-white">
-              <h3 className="text-2xl font-bold">{language === 'it' ? 'Quiz Smart' : 'Smart Quiz'}</h3>
-              <p className="text-blue-100 mt-1">{language === 'it' ? 'Ottieni la tua offerta personalizzata' : 'Erhalten Sie Ihr personalisiertes Angebot'}</p>
+              <h3 className="text-2xl font-bold">{t('quizSmart')}</h3>
+              <p className="text-blue-100 mt-1">{t('getPersonalizedOffer')}</p>
             </div>
             <button onClick={onClose} aria-label="Chiudi" className="rounded-full p-2 bg-white/20 hover:bg-white/30 !text-white transition-colors">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -639,12 +639,12 @@ function QuizWizard({ onClose, t, language }: { onClose: () => void, t: (key: Tr
             <div className="text-center">
               <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium mb-4">
                 <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-                {language === 'it' ? `Domanda ${step} di 3` : `Frage ${step} von 3`}
+                {t('questionXofY', { step })}
               </div>
               <h4 className="text-2xl font-bold text-gray-900 mb-2">
-                {step === 1 && (language === 'it' ? 'Qual è il tuo codice postale (CAP)?' : 'Wie lautet Ihre Postleitzahl (PLZ)?')}
-                {step === 2 && (language === 'it' ? 'Quante persone vivono in casa?' : 'Wie viele Personen leben in Ihrem Haushalt?')}
-                {step === 3 && (language === 'it' ? 'Di cosa hai bisogno?' : 'Was benötigen Sie?')}
+                {step === 1 && t('quizStep1Question')}
+                {step === 2 && t('quizStep2Question')}
+                {step === 3 && t('quizStep3Question')}
               </h4>
             </div>
             <div className="grid gap-3 min-h-[200px] content-center" style={{
@@ -699,7 +699,7 @@ function QuizWizard({ onClose, t, language }: { onClose: () => void, t: (key: Tr
                 { label: t('people2'), icon: "2️⃣", value: t('people2') },
                 { label: t('people3'), icon: "3️⃣", value: t('people3') },
                 { label: t('people4'), icon: "4️⃣", value: t('people4') },
-                { label: "5+ " + (language === 'it' ? 'persone' : 'Personen'), icon: "5️⃣", value: "5+ " + (language === 'it' ? 'persone' : 'Personen') }
+                { label: t('people5Plus'), icon: "5️⃣", value: t('people5Plus') }
               ].map(opt => (
                 <Button key={opt.value} className="group bg-white border border-gray-200 hover:border-green-400 hover:bg-green-50 p-4 h-auto text-center transition-all hover:scale-102 hover:shadow-md rounded-xl" onClick={() => handleAnswer(opt.value)} disabled={loading}>
                   <div className="flex items-center justify-center gap-3">
@@ -970,7 +970,7 @@ export default function Landing() {
       console.error('Full error details:', error);
       const errorMessage = error instanceof Error ? error.message : 'Errore di connessione';
       console.error('Error message:', errorMessage);
-      alert(`${language === 'it' ? 'Errore' : 'Fehler'}: ${errorMessage}`);
+      alert(`${t('error')}: ${errorMessage}`);
     } finally {
       setIsSubmittingContact(false);
     }
@@ -1019,7 +1019,7 @@ export default function Landing() {
           </a>
           <nav className="hidden items-center gap-8 md:flex">
             <a href="#come-funziona" className="text-gray-700 hover:text-gray-700 font-medium transition-colors relative group">
-              {language === 'it' ? 'Come funziona' : 'Wie es funktioniert'}
+              {t('howItWorks')}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 via-blue-500 to-green-500 group-hover:w-full transition-all"></span>
             </a>
             <a href="#faq" className="text-gray-700 hover:text-gray-700 font-medium transition-colors relative group">
@@ -1792,7 +1792,7 @@ export default function Landing() {
                 </h3>
                 
                 <p className="text-gray-600 mb-6 leading-relaxed">
-                  {language === 'it' ? 'Hai domande specifiche o vuoi una consulenza personalizzata? Alessandra, la nostra energy consultant, ti aiuterà a trovare la soluzione perfetta per le tue esigenze di luce e gas.' : 'Haben Sie spezielle Fragen oder wünschen eine persönliche Beratung? Alessandra, unsere Energieberaterin, hilft Ihnen dabei, die perfekte Lösung für Ihre Strom- und Gasbedürfnisse zu finden.'}
+                  {t('alessandraConsultation')}
                 </p>
 
                 {/* Contact Form */}
@@ -1879,7 +1879,7 @@ export default function Landing() {
                       ))}
                     </div>
                     <span className="text-xs text-gray-600">
-                      {language === 'it' ? '"Grazie ad Alessandra ho risparmiato €600 l\'anno!" - Maria R.' : '"Dank Alessandra spare ich €600 pro Jahr!" - Maria R.'}
+                      {t('alessandraTestimonial')}
                     </span>
                   </div>
                 </div>
@@ -1920,7 +1920,7 @@ export default function Landing() {
               </div>
               {/* Content Section - Bottom half */}
               <div className="p-6 text-center flex flex-col justify-center">
-                <h3 className="text-xl font-bold text-gray-900 mb-1">{language === 'it' ? 'Alessandra' : 'Alessandra'}</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-1">{t('alessandraName')}</h3>
                 <p className="text-sm text-gray-700 font-semibold mb-3">{t('teamAlessandra').split(' - ')[1]}</p>
                 <p className="text-gray-600 text-sm leading-relaxed">
                   Esperta del mercato energetico tedesco con oltre 5 anni di esperienza. 
@@ -1954,10 +1954,10 @@ export default function Landing() {
               </div>
               {/* Content Section - Bottom half */}
               <div className="p-6 text-center flex flex-col justify-center">
-                <h3 className="text-xl font-bold text-gray-900 mb-1">{language === 'it' ? 'Calogero' : 'Calogero'}</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-1">{t('calogeroName')}</h3>
                 <p className="text-sm text-gray-700 font-semibold mb-3">{t('teamCalogero').split(' - ')[1]}</p>
                 <p className="text-gray-600 text-sm leading-relaxed">
-                  {language === 'it' ? 'Fondatore di Switchfy, vive in Germania da anni e conosce perfettamente le sfide degli italiani nel mercato energetico tedesco. La sua missione: semplificare il risparmio.' : 'Gründer von Switchfy, lebt seit Jahren in Deutschland und kennt die Herausforderungen der Italiener im deutschen Energiemarkt perfekt. Seine Mission: das Sparen zu vereinfachen.'}
+                  {t('calogeroDescription')}
                 </p>
                 <div className="mt-4 flex flex-col items-center gap-2">
                   <div className="flex items-center gap-1">
@@ -2000,7 +2000,7 @@ export default function Landing() {
                 ))}
               </div>
               <blockquote className="text-gray-700 mb-6 leading-relaxed">
-                {language === 'it' ? '"Grazie ad Alessandra e al team di Switchfy ho finalmente capito come funziona il mercato energetico tedesco. Mi hanno seguito passo passo e ora risparmio €850 l\'anno sulla bolletta!"' : '"Dank Alessandra und dem Switchfy-Team habe ich endlich verstanden, wie der deutsche Energiemarkt funktioniert. Sie haben mich Schritt für Schritt begleitet und jetzt spare ich €850 pro Jahr bei der Rechnung!"'}
+                {t('mainTestimonial')}
               </blockquote>
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-green-600 rounded-full flex items-center justify-center">
@@ -2157,11 +2157,11 @@ export default function Landing() {
                 </div>
 
                 <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4">
-                  {language === 'it' ? 'Sei pronto a risparmiare ' : 'Sind Sie bereit zu sparen '}<span className="bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">€650 {language === 'it' ? "l'anno?" : 'pro Jahr?'}</span>
+                  {t('readyToSave')} <span className="bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">€650 {t('perYear')}</span>
                 </h2>
                 <p className="text-lg text-gray-700 mb-8 max-w-2xl mx-auto leading-relaxed">
-                  {language === 'it' ? 'Più di 5.000 famiglie italiane in Germania stanno già risparmiando centinaia di euro ogni anno.' : 'Mehr als 5.000 italienische Familien in Deutschland sparen bereits Hunderte von Euro pro Jahr.'} 
-                  <strong className="text-gray-600"> Il tuo quiz ti aspetta.</strong>
+                  {t('thousandsFamilies')} 
+                  <strong className="text-gray-600"> {t('yourQuizAwaits')}</strong>
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">

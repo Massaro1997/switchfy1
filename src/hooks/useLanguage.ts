@@ -21,8 +21,14 @@ export const useLanguage = () => {
     }
   }, [language]);
 
-  const t = (key: TranslationKey): string => {
-    return getTranslation(language, key);
+  const t = (key: TranslationKey, params?: Record<string, string | number>): string => {
+    let translation = getTranslation(language, key);
+    if (params) {
+      Object.keys(params).forEach(param => {
+        translation = translation.replace(`{${param}}`, String(params[param]));
+      });
+    }
+    return translation;
   };
 
   const toggleLanguage = () => {
