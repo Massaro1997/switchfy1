@@ -1925,15 +1925,15 @@ export default function Landing() {
           <div className="grid gap-8 md:grid-cols-2 max-w-4xl mx-auto">
             {/* Alessandra Card */}
             <Card className="border-0 bg-white/80 backdrop-blur-sm shadow-xl overflow-hidden">
-              {/* Photo Section - Takes up top half */}
-              <div className="h-64 bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center p-6">
-                <div className="w-56 h-56 relative">
-                  <img 
-                    src="/ale.png" 
-                    alt="Alessandra - Energy Consultant" 
-                    className="w-full h-full object-cover rounded-full border-6 border-white shadow-2xl ring-4 ring-blue-200/50"
-                  />
-                </div>
+              {/* Photo Section - Takes up entire top half */}
+              <div className="h-64 relative">
+                <img 
+                  src="/ale.png" 
+                  alt="Alessandra - Energy Consultant" 
+                  className="w-full h-full object-cover"
+                />
+                {/* Optional overlay for better text readability if needed */}
+                <div className="absolute inset-0 bg-black/10"></div>
               </div>
               {/* Content Section - Bottom half */}
               <div className="p-6 text-center">
@@ -1956,15 +1956,15 @@ export default function Landing() {
 
             {/* Calogero Card */}
             <Card className="border-0 bg-white/80 backdrop-blur-sm shadow-xl overflow-hidden">
-              {/* Photo Section - Takes up top half */}
-              <div className="h-64 bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center p-6">
-                <div className="w-56 h-56 relative">
-                  <img 
-                    src="/calogero.png" 
-                    alt="Calogero - Founder & CEO" 
-                    className="w-full h-full object-cover rounded-full border-6 border-white shadow-2xl ring-4 ring-green-200/50"
-                  />
-                </div>
+              {/* Photo Section - Takes up entire top half */}
+              <div className="h-64 relative">
+                <img 
+                  src="/calogero.png" 
+                  alt="Calogero - Founder & CEO" 
+                  className="w-full h-full object-cover"
+                />
+                {/* Optional overlay for better text readability if needed */}
+                <div className="absolute inset-0 bg-black/10"></div>
               </div>
               {/* Content Section - Bottom half */}
               <div className="p-6 text-center">
