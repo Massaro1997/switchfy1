@@ -174,8 +174,8 @@ function ComparisonPopup({
                     </div>
                     <div className="text-center p-3 bg-green-50/50 rounded-2xl">
                       <p className="text-xs text-gray-500 font-medium mb-1">💰 Risparmio annuo</p>
-                      <p className="font-black text-lg text-green-700">€{offer.annualSavings}</p>
-                      <p className="text-xs text-green-500">vs fornitore base</p>
+                      <p className="font-black text-lg text-gray-800">€{offer.annualSavings}</p>
+                      <p className="text-xs text-gray-600">vs fornitore base</p>
                     </div>
                     <div className="text-center p-3 bg-blue-50/50 rounded-2xl">
                       <p className="text-xs text-gray-500 font-medium mb-1">🎁 Bonus</p>
@@ -279,7 +279,7 @@ function QuickQuizForm({ onShowComparator }: { onShowComparator: (data: {cap: st
       {/* CAP */}
       <div className="mb-6">
         <div className="text-center mb-4">
-          <h4 className="text-xl font-black bg-gradient-to-r from-blue-800 to-green-800 bg-clip-text text-transparent">
+          <h4 className="text-xl font-black bg-gradient-to-r from-blue-700 to-green-700 bg-clip-text text-transparent">
             Dove abiti in Germania?
           </h4>
         </div>
@@ -305,7 +305,7 @@ function QuickQuizForm({ onShowComparator }: { onShowComparator: (data: {cap: st
       {/* Persone */}
       <div className="mb-6">
         <div className="text-center mb-4">
-          <h4 className="text-xl font-black bg-gradient-to-r from-blue-800 to-green-800 bg-clip-text text-transparent">
+          <h4 className="text-xl font-black bg-gradient-to-r from-blue-700 to-green-700 bg-clip-text text-transparent">
             Quante persone vivono in casa?
           </h4>
         </div>
@@ -339,7 +339,7 @@ function QuickQuizForm({ onShowComparator }: { onShowComparator: (data: {cap: st
       {/* Tipo servizio */}
       <div className="mb-6">
         <div className="text-center mb-4">
-          <h4 className="text-xl font-black bg-gradient-to-r from-blue-800 to-green-800 bg-clip-text text-transparent">
+          <h4 className="text-xl font-black bg-gradient-to-r from-blue-700 to-green-700 bg-clip-text text-transparent">
             Di cosa hai bisogno?
           </h4>
         </div>
@@ -347,7 +347,7 @@ function QuickQuizForm({ onShowComparator }: { onShowComparator: (data: {cap: st
           {[
             { value: "Solo Luce", icon: "💡", label: "Solo Luce", gradient: "from-blue-400 to-blue-600" },
             { value: "Solo Gas", icon: "🔥", label: "Solo Gas", gradient: "from-green-500 to-green-600" },
-            { value: "Luce + Gas (entrambi)", icon: "💡🔥", label: "Luce + Gas", gradient: "from-blue-500 to-green-500" }
+            { value: "Luce + Gas (entrambi)", icon: "💡🔥", label: "Luce + Gas", gradient: "from-blue-600 to-green-600" }
           ].map((option) => (
             <button
               key={option.value}
@@ -384,17 +384,17 @@ function QuickQuizForm({ onShowComparator }: { onShowComparator: (data: {cap: st
           <div className="absolute inset-0 bg-gradient-to-r from-blue-400 via-blue-400 to-green-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           
           {/* Button Content */}
-          <span className="relative z-10">
+          <span className="">
             {loading ? (
               <span className="flex items-center justify-center gap-3">
                 <div className="w-6 h-6 border-3 border-white/30 border-t-white rounded-full animate-spin"></div>
-                <span className="animate-pulse">Calcolo in corso...</span>
+                <span className="animate-pulse text-sm sm:text-base">Calcolo in corso...</span>
               </span>
             ) : (
               <div className="flex items-center justify-center gap-3">
-                <span className="text-xl font-black">Scopri subito quanto puoi risparmiare</span>
-                <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-all group-hover:scale-110">
-                  <ChevronRight className="h-5 w-5 group-hover:translate-x-0.5 transition-transform" />
+                <span className="text-sm sm:text-lg md:text-xl font-black text-center leading-tight">Scopri subito quanto puoi risparmiare</span>
+                <div className="w-6 h-6 sm:w-8 sm:h-8 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-all group-hover:scale-110">
+                  <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-0.5 transition-transform" />
                 </div>
               </div>
             )}
@@ -585,7 +585,7 @@ function QuizWizard({ onClose }: { onClose: () => void }) {
         {step === 0 && (
           <div className="space-y-6">
             <div className="text-center">
-              <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
+              <div className="inline-flex items-center gap-2 bg-green-100 text-gray-800 px-4 py-2 rounded-full text-sm font-medium mb-4">
                 <Sparkles className="h-4 w-4" />
                 Veloce e sicuro
               </div>
@@ -615,7 +615,7 @@ function QuizWizard({ onClose }: { onClose: () => void }) {
             </form>
             <div className="flex items-center justify-center gap-4 text-sm text-gray-500">
               <div className="flex items-center gap-2">
-                <Shield className="h-4 w-4 text-green-500" />
+                <Shield className="h-4 w-4 text-gray-600" />
                 <span>Sicuro</span>
               </div>
               <div className="w-1 h-1 bg-gray-300 rounded-full"></div>
@@ -681,7 +681,7 @@ function QuizWizard({ onClose }: { onClose: () => void }) {
                   </form>
                   <p className="text-sm text-gray-500 mt-2 text-center">Inserisci un CAP tedesco a 5 cifre</p>
                   <div className="text-center mt-3">
-                    <div className="inline-flex items-center gap-2 text-xs text-green-600">
+                    <div className="inline-flex items-center gap-2 text-xs text-gray-600">
                       <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                       <span>Validazione automatica con database tedesco</span>
                     </div>
@@ -738,7 +738,7 @@ function QuizWizard({ onClose }: { onClose: () => void }) {
         {step === 4 && (
           <div className="space-y-6">
             <div className="text-center">
-              <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
+              <div className="inline-flex items-center gap-2 bg-green-100 text-gray-800 px-4 py-2 rounded-full text-sm font-medium mb-4">
                 <Check className="h-4 w-4" />
                 Offerte personalizzate
               </div>
@@ -822,7 +822,7 @@ function QuizWizard({ onClose }: { onClose: () => void }) {
                           <h5 className="font-bold text-gray-900">{offer.provider}</h5>
                           <span className="text-sm text-gray-500">{offer.plan}</span>
                           <span className={`text-xs px-2 py-1 rounded-full ${
-                            offer.color === 'green' ? 'bg-green-100 text-green-700' : 
+                            offer.color === 'green' ? 'bg-green-100 text-gray-800' : 
                             offer.color === 'blue' ? 'bg-blue-100 text-blue-700' : 
                             offer.color === 'blue' ? 'bg-blue-100 text-blue-700' : 
                             offer.color === 'orange' ? 'bg-orange-100 text-orange-700' : 
@@ -832,13 +832,13 @@ function QuizWizard({ onClose }: { onClose: () => void }) {
                         <div className="flex items-center gap-4">
                           <div>
                             <div className="text-2xl font-black text-gray-900">{offer.price}/mese</div>
-                            <div className="text-sm text-green-600 font-semibold">Risparmi {offer.savings}/anno</div>
+                            <div className="text-sm text-gray-600 font-semibold">Risparmi {offer.savings}/anno</div>
                           </div>
                           <div className="flex-1">
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-2 text-xs text-gray-600">
                               {offer.features.map((feature, i) => (
                                 <div key={i} className="flex items-center gap-1">
-                                  <Check className="h-3 w-3 text-green-500" />
+                                  <Check className="h-3 w-3 text-gray-600" />
                                   <span>{feature}</span>
                                 </div>
                               ))}
@@ -1011,17 +1011,17 @@ export default function Landing() {
             <img src="/logo.png" alt="Switchfy" className="h-12 w-auto md:h-14" />
           </a>
           <nav className="hidden items-center gap-8 md:flex">
-            <a href="#come-funziona" className="text-gray-700 hover:text-blue-600 font-medium transition-colors relative group">
+            <a href="#come-funziona" className="text-gray-700 hover:text-gray-700 font-medium transition-colors relative group">
               Come funziona
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all"></span>
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 via-blue-500 to-green-500 group-hover:w-full transition-all"></span>
             </a>
-            <a href="#faq" className="text-gray-700 hover:text-blue-600 font-medium transition-colors relative group">
+            <a href="#faq" className="text-gray-700 hover:text-gray-700 font-medium transition-colors relative group">
               FAQ
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all"></span>
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 via-blue-500 to-green-500 group-hover:w-full transition-all"></span>
             </a>
-            <a href="#legal" className="text-gray-700 hover:text-blue-600 font-medium transition-colors relative group">
+            <a href="#legal" className="text-gray-700 hover:text-gray-700 font-medium transition-colors relative group">
               Privacy & Impressum
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all"></span>
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 via-blue-500 to-green-500 group-hover:w-full transition-all"></span>
             </a>
             <Button className="bg-gradient-to-r from-blue-600 via-blue-500 to-green-500 !text-white hover:from-blue-700 hover:via-blue-600 hover:to-green-600 px-6 py-2.5 font-semibold shadow-md hover:shadow-lg transform hover:scale-105 transition-all" onClick={() => handleQuizStart('header')}>
               Inizia il quiz
@@ -1050,14 +1050,14 @@ export default function Landing() {
           {/* Subtle dark overlay only for text readability */}
           <div className="absolute inset-0 bg-black/30"></div>
         </div>
-        <Container className="relative z-10 grid items-center gap-6 md:gap-8 md:grid-cols-2 w-full">
+        <Container className=" grid items-center gap-6 md:gap-8 md:grid-cols-2 w-full">
           <div className="space-y-4 md:space-y-6">
             <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-white/90 to-white/80 backdrop-blur-md px-4 py-2 text-sm font-medium text-blue-700 shadow-lg border border-white/30">
-              <div className="w-2 h-2 bg-gradient-to-r from-blue-500 to-green-500 rounded-full animate-pulse"></div>
+              <div className="w-2 h-2 bg-gradient-to-r from-blue-600 to-green-600 rounded-full animate-pulse"></div>
               Digitale • Veloce • Trasparente
             </div>
             <div>
-              <h1 className="text-5xl font-black tracking-tight md:text-6xl lg:text-7xl mb-4">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight mb-4 leading-tight">
                 <span className="text-white drop-shadow-2xl">
                   Taglia la tua 
                 </span>
@@ -1066,12 +1066,12 @@ export default function Landing() {
                   bolletta
                 </span>
                 <br />
-                <span className="text-white/90 drop-shadow-2xl text-4xl md:text-5xl lg:text-6xl">
+                <span className="text-white/90 drop-shadow-2xl text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl">
                   in 60 secondi
                 </span>
               </h1>
               <div className="flex items-center gap-2 mb-6">
-                <div className="h-1 w-20 bg-gradient-to-r from-blue-400 to-green-400 rounded-full"></div>
+                <div className="h-1 w-20 bg-gradient-to-r bg-blue-500 rounded-full"></div>
                 <div className="h-1 w-8 bg-white/50 rounded-full"></div>
               </div>
             </div>
@@ -1094,18 +1094,18 @@ export default function Landing() {
               </div>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
-              <Button className="group bg-gradient-to-r from-blue-600 via-blue-500 to-green-500 !text-white hover:from-blue-700 hover:via-blue-600 hover:to-green-600 px-8 py-4 text-lg font-semibold shadow-xl hover:shadow-2xl transform hover:scale-[1.02] transition-all rounded-2xl border border-white/20" onClick={() => handleQuizStart('hero_main')}>
+              <Button className="group bg-gradient-to-r from-blue-600 via-blue-500 to-green-500 !text-white hover:from-blue-700 hover:via-blue-600 hover:to-green-600 px-4 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold shadow-xl hover:shadow-2xl transform hover:scale-[1.02] transition-all rounded-2xl border border-white/20" onClick={() => handleQuizStart('hero_main')}>
                 <span className="flex items-center gap-2">
                   Inizia il Quiz
-                  <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors">
-                    <ChevronRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
+                  <div className="w-5 h-5 sm:w-6 sm:h-6 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors">
+                    <ChevronRight className="h-3 w-3 sm:h-4 sm:w-4 group-hover:translate-x-0.5 transition-transform" />
                   </div>
                 </span>
               </Button>
-              <Button className="bg-white/10 backdrop-blur border-2 border-white/30 hover:bg-white/20 hover:border-white/40 !text-white px-8 py-5 text-lg font-semibold rounded-2xl transition-all" onClick={() => document.getElementById("come-funziona")?.scrollIntoView({ behavior: 'smooth' })}>
+              <Button className="bg-white/10 backdrop-blur border-2 border-white/30 hover:bg-white/20 hover:border-white/40 !text-white px-4 sm:px-8 py-3 sm:py-5 text-base sm:text-lg font-semibold rounded-2xl transition-all" onClick={() => document.getElementById("come-funziona")?.scrollIntoView({ behavior: 'smooth' })}>
                 <span className="flex items-center gap-2">
                   Come funziona
-                  <HelpCircle className="h-5 w-5" />
+                  <HelpCircle className="h-4 w-4 sm:h-5 sm:w-5" />
                 </span>
               </Button>
             </div>
@@ -1141,7 +1141,7 @@ export default function Landing() {
                   <div className="text-center mb-8">
                     <div className="inline-flex items-center gap-2 bg-gradient-to-r from-green-100/80 to-blue-100/80 backdrop-blur-sm border border-green-300/30 px-4 py-2 rounded-full mb-5 shadow-sm">
                       <div className="w-3 h-3 bg-gradient-to-r from-green-500 to-green-600 rounded-full animate-pulse shadow-sm"></div>
-                      <span className="text-sm font-bold bg-gradient-to-r from-blue-700 to-green-700 bg-clip-text text-transparent">
+                      <span className="text-sm font-bold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
                         RISPARMIO GARANTITO
                       </span>
                     </div>
@@ -1156,7 +1156,7 @@ export default function Landing() {
                   {/* Benefits at bottom */}
                   <div className="mt-4 pt-3 border-t border-gray-200/30">
                     <p className="text-center text-xs font-medium leading-relaxed text-gray-600">
-                      <span className="text-green-600">✓ Fino a €850 all'anno</span> • <span className="text-blue-600">✓ Cambio automatico</span> • <span className="text-gray-600">✓ Zero burocrazia</span>
+                      <span className="text-gray-600">✓ Fino a €850 all'anno</span> • <span className="text-gray-700">✓ Cambio automatico</span> • <span className="text-gray-600">✓ Zero burocrazia</span>
                     </p>
                   </div>
                 </div>
@@ -1174,36 +1174,27 @@ export default function Landing() {
           {/* Enhanced Stats Section */}
           <div className="grid gap-6 md:grid-cols-4 mb-16">
             <Card className="text-center border-0 bg-white backdrop-blur-sm p-6 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-green-50/30 opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
-              <div className="absolute top-3 right-3 opacity-60 group-hover:opacity-80 transition-all duration-300">
-                <img src="/slogo.png" alt="" className="w-4 h-4" />
-              </div>
-              <div className="relative z-10">
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-green-500 rounded-3xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110 relative overflow-hidden">
-                  <span className="text-white font-black text-2xl relative z-10">€</span>
+              <div>
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-green-600 rounded-3xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110 relative overflow-hidden">
+                  <span className="text-white font-black text-2xl ">€</span>
                 </div>
-                <div className="text-3xl font-black bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent mb-2">€850</div>
+                <div className="text-2xl sm:text-3xl font-black bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent mb-2">€850</div>
                 <p className="text-sm text-gray-800 font-bold mb-1">Risparmio Medio Annuo</p>
-                <p className="text-xs text-blue-600 font-semibold">vs. fornitore di base</p>
+                <p className="text-xs text-gray-700 font-semibold">vs. fornitore di base</p>
                 <div className="mt-3 h-1 bg-gray-200 rounded-full overflow-hidden">
-                  <div className="h-full bg-gradient-to-r from-blue-500 to-green-500 rounded-full w-4/5 transition-all duration-1000 group-hover:w-full"></div>
+                  <div className="h-full bg-gradient-to-r from-blue-600 to-green-600 rounded-full w-4/5 transition-all duration-1000 group-hover:w-full"></div>
                 </div>
               </div>
             </Card>
 
             <Card className="text-center border-0 bg-white backdrop-blur-sm p-6 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-green-50/50 to-blue-50/30 opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
-              <div className="absolute top-3 right-3 opacity-60 group-hover:opacity-80 transition-all duration-300">
-                <img src="/slogo.png" alt="" className="w-4 h-4" />
-              </div>
-              <div className="relative z-10">
+              <div>
                 <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-blue-500 rounded-3xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-[url('/donna-di-smiley.jpg')] bg-cover bg-center opacity-20"></div>
-                  <Sparkles className="h-8 w-8 text-white relative z-10" />
+                  <Sparkles className="h-8 w-8 text-white " />
                 </div>
-                <div className="text-3xl font-black bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent mb-2">150+</div>
+                <div className="text-2xl sm:text-3xl font-black bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent mb-2">150+</div>
                 <p className="text-sm text-gray-800 font-bold mb-1">Fornitori Analizzati</p>
-                <p className="text-xs text-green-600 font-semibold">aggiornamenti in tempo reale</p>
+                <p className="text-xs text-gray-600 font-semibold">aggiornamenti in tempo reale</p>
                 <div className="mt-3 h-1 bg-gray-200 rounded-full overflow-hidden">
                   <div className="h-full bg-gradient-to-r from-green-500 to-blue-500 rounded-full w-full"></div>
                 </div>
@@ -1211,36 +1202,27 @@ export default function Landing() {
             </Card>
 
             <Card className="text-center border-0 bg-white backdrop-blur-sm p-6 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-green-50/30 opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
-              <div className="absolute top-3 right-3 opacity-60 group-hover:opacity-80 transition-all duration-300">
-                <img src="/slogo.png" alt="" className="w-4 h-4" />
-              </div>
-              <div className="relative z-10">
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-green-500 rounded-3xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110 relative overflow-hidden">
-                  <span className="text-white font-black text-lg relative z-10">60s</span>
+              <div>
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-green-600 rounded-3xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110 relative overflow-hidden">
+                  <span className="text-white font-black text-lg ">60s</span>
                 </div>
-                <div className="text-3xl font-black bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent mb-2">Veloce</div>
+                <div className="text-2xl sm:text-3xl font-black bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent mb-2">Veloce</div>
                 <p className="text-sm text-gray-800 font-bold mb-1">Quiz Completo</p>
-                <p className="text-xs text-blue-600 font-semibold">risultato istantaneo</p>
+                <p className="text-xs text-gray-700 font-semibold">risultato istantaneo</p>
                 <div className="mt-3 h-1 bg-gray-200 rounded-full overflow-hidden">
-                  <div className="h-full bg-gradient-to-r from-blue-500 to-green-500 rounded-full w-3/5 transition-all duration-1000 group-hover:w-full"></div>
+                  <div className="h-full bg-gradient-to-r from-blue-600 to-green-600 rounded-full w-3/5 transition-all duration-1000 group-hover:w-full"></div>
                 </div>
               </div>
             </Card>
 
             <Card className="text-center border-0 bg-white backdrop-blur-sm p-6 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-green-50/50 to-blue-50/30 opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
-              <div className="absolute top-3 right-3 opacity-60 group-hover:opacity-80 transition-all duration-300">
-                <img src="/slogo.png" alt="" className="w-4 h-4" />
-              </div>
-              <div className="relative z-10">
+              <div>
                 <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-blue-500 rounded-3xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-[url('/famiglia-seduta-sul-prato.jpg')] bg-cover bg-center opacity-20"></div>
-                  <Check className="h-8 w-8 text-white relative z-10" />
+                  <Check className="h-8 w-8 text-white " />
                 </div>
-                <div className="text-3xl font-black bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent mb-2">0€</div>
+                <div className="text-2xl sm:text-3xl font-black bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent mb-2">0€</div>
                 <p className="text-sm text-gray-800 font-bold mb-1">Servizio Gratuito</p>
-                <p className="text-xs text-green-600 font-semibold">nessun costo nascosto</p>
+                <p className="text-xs text-gray-600 font-semibold">nessun costo nascosto</p>
                 <div className="mt-3 h-1 bg-gray-200 rounded-full overflow-hidden">
                   <div className="h-full bg-gradient-to-r from-green-500 to-blue-500 rounded-full w-full"></div>
                 </div>
@@ -1252,7 +1234,7 @@ export default function Landing() {
           <Card className="border-0 bg-white backdrop-blur-sm p-6 mb-12 shadow-lg">
             <div className="grid gap-8 md:grid-cols-2 items-center">
               <div>
-                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-100 to-green-100 px-3 py-1.5 rounded-full mb-4">
+                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-100/50 to-green-100/50 px-3 py-1.5 rounded-full mb-4">
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                   <span className="text-xs font-semibold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
                     Perché Switchfy
@@ -1262,7 +1244,7 @@ export default function Landing() {
                 <div className="space-y-3">
                   <div className="flex items-start gap-3">
                     <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mt-0.5">
-                      <Check className="h-3 w-3 text-green-600" />
+                      <Check className="h-3 w-3 text-gray-600" />
                     </div>
                     <div>
                       <p className="font-medium text-gray-900 text-sm">Esperti del mercato energetico tedesco</p>
@@ -1271,7 +1253,7 @@ export default function Landing() {
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mt-0.5">
-                      <Sparkles className="h-3 w-3 text-green-600" />
+                      <Sparkles className="h-3 w-3 text-gray-600" />
                     </div>
                     <div>
                       <p className="font-medium text-gray-900 text-sm">Algoritmo proprietario di confronto</p>
@@ -1280,7 +1262,7 @@ export default function Landing() {
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mt-0.5">
-                      <Shield className="h-3 w-3 text-green-600" />
+                      <Shield className="h-3 w-3 text-gray-600" />
                     </div>
                     <div>
                       <p className="font-medium text-gray-900 text-sm">Assistenza dedicata in italiano</p>
@@ -1314,22 +1296,19 @@ export default function Landing() {
           <div className="grid gap-6 md:grid-cols-3 mb-8">
             {features.map((f, i) => (
               <Card key={i} className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-0 bg-white backdrop-blur-sm p-5 shadow-lg relative">
-                <div className="absolute top-3 right-3 opacity-60 group-hover:opacity-80 transition-all duration-300">
-                  <img src="/slogo.png" alt="" className="w-4 h-4" />
-                </div>
                 <div className="mb-4">
                   <div className="flex items-center justify-between mb-3">
-                    <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-blue-500 to-green-500 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-blue-600 to-green-600 flex items-center justify-center">
                       <f.icon className="h-5 w-5 text-white" />
                     </div>
-                    <div className="px-2 py-1 rounded-full text-xs font-bold bg-gradient-to-r from-blue-100 to-green-100">
+                    <div className="px-2 py-1 rounded-full text-xs font-bold bg-gradient-to-r from-blue-100/50 to-green-100/50">
                       <span className="bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
                         {f.highlight}
                       </span>
                     </div>
                   </div>
                   <h3 className="text-lg font-bold text-gray-900 mb-2">{f.title}</h3>
-                  <div className="h-0.5 w-12 rounded-full mb-3 bg-gradient-to-r from-blue-500 to-green-500"></div>
+                  <div className="h-0.5 w-12 rounded-full mb-3 bg-gradient-to-r from-blue-600 to-green-600"></div>
                 </div>
                 <p className="text-gray-600 text-sm leading-relaxed mb-4">{f.desc}</p>
                 
@@ -1340,7 +1319,7 @@ export default function Landing() {
                     {f.details.map((detail, idx) => (
                       <li key={idx} className="flex items-start gap-2 text-xs text-gray-600">
                         <div className="w-3 h-3 bg-blue-100 rounded-full flex items-center justify-center mt-0.5 flex-shrink-0">
-                          <Check className="h-2 w-2 text-blue-600" />
+                          <Check className="h-2 w-2 text-gray-700" />
                         </div>
                         <span>{detail}</span>
                       </li>
@@ -1350,7 +1329,7 @@ export default function Landing() {
 
                 <div className="flex items-center justify-between pt-3 border-t border-gray-100">
                   <span className="text-xs font-medium bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">Step {i + 1}</span>
-                  <ChevronRight className="h-4 w-4 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all" />
+                  <ChevronRight className="h-4 w-4 text-gray-400 group-hover:text-gray-700 group-hover:translate-x-1 transition-all" />
                 </div>
               </Card>
             ))}
@@ -1364,7 +1343,7 @@ export default function Landing() {
             <Card className="border-0 bg-white backdrop-blur-sm p-8 md:p-12 shadow-2xl relative overflow-hidden">
               {/* Header */}
               <div className="text-center mb-8">
-                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-100 to-green-100 px-4 py-2 rounded-full mb-6">
+                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-100/50 to-green-100/50 px-4 py-2 rounded-full mb-6">
                   <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
                   <span className="text-sm font-bold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
                     🚀 Processo Semplificato
@@ -1403,7 +1382,7 @@ export default function Landing() {
                       <p className="text-gray-600 mb-4 leading-relaxed">
                         Ti chiediamo solo l'essenziale: quanto spendi per luce e gas, che tipo di contratti hai, e stop.
                       </p>
-                      <div className="flex items-center justify-center gap-2 text-sm text-blue-600 font-semibold">
+                      <div className="flex items-center justify-center gap-2 text-sm text-gray-700 font-semibold">
                         <Sparkles className="h-4 w-4" />
                         <span>Solo l'essenziale</span>
                       </div>
@@ -1434,7 +1413,7 @@ export default function Landing() {
                       <p className="text-gray-600 mb-4 leading-relaxed">
                         Algoritmo + partner affidabili → offerta costruita sul tuo consumo, non su statistiche generiche.
                       </p>
-                      <div className="flex items-center justify-center gap-2 text-sm text-green-600 font-semibold">
+                      <div className="flex items-center justify-center gap-2 text-sm text-gray-600 font-semibold">
                         <Check className="h-4 w-4" />
                         <span>Su misura per te</span>
                       </div>
@@ -1463,7 +1442,7 @@ export default function Landing() {
                       <p className="text-gray-600 mb-4 leading-relaxed">
                         Dimentica fax, raccomandate e call center. Con Switchfy firmi online e sei operativo in pochi minuti.
                       </p>
-                      <div className="flex items-center justify-center gap-2 text-sm text-blue-600 font-semibold">
+                      <div className="flex items-center justify-center gap-2 text-sm text-gray-700 font-semibold">
                         <Shield className="h-4 w-4" />
                         <span>100% digitale</span>
                       </div>
@@ -1477,21 +1456,21 @@ export default function Landing() {
                 <h4 className="text-center text-lg font-bold text-gray-900 mb-6">Perché scegliere il nostro processo?</h4>
                 <div className="grid gap-6 md:grid-cols-3">
                   <div className="text-center">
-                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-green-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
                       <Shield className="h-6 w-6 text-white" />
                     </div>
                     <h5 className="font-bold text-gray-900 mb-2">Sicurezza Garantita</h5>
                     <p className="text-sm text-gray-600">Crittografia bancaria, dati protetti secondo GDPR, zero rischi</p>
                   </div>
                   <div className="text-center">
-                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-green-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
                       <Check className="h-6 w-6 text-white" />
                     </div>
                     <h5 className="font-bold text-gray-900 mb-2">Fornitura Continua</h5>
                     <p className="text-sm text-gray-600">La corrente non si interrompe mai durante il cambio, garantito per legge</p>
                   </div>
                   <div className="text-center">
-                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-green-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
                       <Sparkles className="h-6 w-6 text-white" />
                     </div>
                     <h5 className="font-bold text-gray-900 mb-2">Trasparenza Totale</h5>
@@ -1513,19 +1492,19 @@ export default function Landing() {
                 <div className="mt-6 flex flex-wrap justify-center items-center gap-6 text-sm text-gray-600">
                   <div className="flex items-center gap-2">
                     <div className="w-4 h-4 bg-green-100 rounded-full flex items-center justify-center">
-                      <Check className="h-2.5 w-2.5 text-green-600" />
+                      <Check className="h-2.5 w-2.5 text-gray-600" />
                     </div>
                     <span>Gratuito</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="w-4 h-4 bg-blue-100 rounded-full flex items-center justify-center">
-                      <Shield className="h-2.5 w-2.5 text-blue-600" />
+                      <Shield className="h-2.5 w-2.5 text-gray-700" />
                     </div>
                     <span>Senza impegno</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="w-4 h-4 bg-green-100 rounded-full flex items-center justify-center">
-                      <Sparkles className="h-2.5 w-2.5 text-green-600" />
+                      <Sparkles className="h-2.5 w-2.5 text-gray-600" />
                     </div>
                     <span>5.000+ clienti soddisfatti</span>
                   </div>
@@ -1537,7 +1516,7 @@ export default function Landing() {
           {/* Garanzie Section - New */}
           <div className="mt-8">
             <div className="text-center mb-8">
-              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-100 to-green-100 px-3 py-1.5 rounded-full mb-3">
+              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-100/50 to-green-100/50 px-3 py-1.5 rounded-full mb-3">
                 <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
                 <span className="text-xs font-semibold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
                   Le Nostre Garanzie
@@ -1551,7 +1530,7 @@ export default function Landing() {
               {/* Left Column - Garanzie Principali */}
               <Card className="border-0 bg-white/80 backdrop-blur-sm shadow-lg p-5">
                 <div className="flex items-center gap-2 mb-4">
-                  <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-green-500 rounded-xl flex items-center justify-center">
+                  <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-green-600 rounded-xl flex items-center justify-center">
                     <Shield className="h-4 w-4 text-white" />
                   </div>
                   <h4 className="text-lg font-bold text-gray-900">Garanzie di Sicurezza</h4>
@@ -1559,7 +1538,7 @@ export default function Landing() {
                 <div className="space-y-3">
                   <div className="flex items-start gap-2">
                     <div className="w-4 h-4 bg-blue-100 rounded-full flex items-center justify-center mt-0.5 flex-shrink-0">
-                      <Check className="h-2.5 w-2.5 text-blue-600" />
+                      <Check className="h-2.5 w-2.5 text-gray-700" />
                     </div>
                     <div>
                       <p className="font-medium text-gray-900 text-sm">Fornitura Garantita per Legge</p>
@@ -1568,7 +1547,7 @@ export default function Landing() {
                   </div>
                   <div className="flex items-start gap-2">
                     <div className="w-4 h-4 bg-blue-100 rounded-full flex items-center justify-center mt-0.5 flex-shrink-0">
-                      <Check className="h-2.5 w-2.5 text-blue-600" />
+                      <Check className="h-2.5 w-2.5 text-gray-700" />
                     </div>
                     <div>
                       <p className="font-medium text-gray-900 text-sm">Disdetta Garantita Legalmente</p>
@@ -1577,7 +1556,7 @@ export default function Landing() {
                   </div>
                   <div className="flex items-start gap-2">
                     <div className="w-4 h-4 bg-blue-100 rounded-full flex items-center justify-center mt-0.5 flex-shrink-0">
-                      <Check className="h-2.5 w-2.5 text-blue-600" />
+                      <Check className="h-2.5 w-2.5 text-gray-700" />
                     </div>
                     <div>
                       <p className="font-medium text-gray-900 text-sm">Diritto di Recesso 14 Giorni</p>
@@ -1590,7 +1569,7 @@ export default function Landing() {
               {/* Right Column - Garanzie Prezzo */}
               <Card className="border-0 bg-white/80 backdrop-blur-sm shadow-lg p-5">
                 <div className="flex items-center gap-2 mb-4">
-                  <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-green-500 rounded-xl flex items-center justify-center">
+                  <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-green-600 rounded-xl flex items-center justify-center">
                     <Sparkles className="h-4 w-4 text-white" />
                   </div>
                   <h4 className="text-lg font-bold text-gray-900">Garanzie di Prezzo</h4>
@@ -1598,7 +1577,7 @@ export default function Landing() {
                 <div className="space-y-3">
                   <div className="flex items-start gap-2">
                     <div className="w-4 h-4 bg-green-100 rounded-full flex items-center justify-center mt-0.5 flex-shrink-0">
-                      <Check className="h-2.5 w-2.5 text-green-600" />
+                      <Check className="h-2.5 w-2.5 text-gray-600" />
                     </div>
                     <div>
                       <p className="font-medium text-gray-900 text-sm">Garanzia Prezzo Fisso 24 Mesi</p>
@@ -1607,7 +1586,7 @@ export default function Landing() {
                   </div>
                   <div className="flex items-start gap-2">
                     <div className="w-4 h-4 bg-green-100 rounded-full flex items-center justify-center mt-0.5 flex-shrink-0">
-                      <Check className="h-2.5 w-2.5 text-green-600" />
+                      <Check className="h-2.5 w-2.5 text-gray-600" />
                     </div>
                     <div>
                       <p className="font-medium text-gray-900 text-sm">Rimborso Differenza Prezzo</p>
@@ -1616,7 +1595,7 @@ export default function Landing() {
                   </div>
                   <div className="flex items-start gap-2">
                     <div className="w-4 h-4 bg-green-100 rounded-full flex items-center justify-center mt-0.5 flex-shrink-0">
-                      <Check className="h-2.5 w-2.5 text-green-600" />
+                      <Check className="h-2.5 w-2.5 text-gray-600" />
                     </div>
                     <div>
                       <p className="font-medium text-gray-900 text-sm">Condizioni Contrattuali Chiare</p>
@@ -1639,11 +1618,11 @@ export default function Landing() {
                   <p className="text-gray-700 text-sm">3-6 settimane per il cambio tecnico</p>
                 </div>
                 <div className="bg-white/90 backdrop-blur-sm p-4 rounded-xl border-2 border-blue-300 shadow-lg">
-                  <div className="text-2xl font-bold text-blue-600 mb-2">Dal 2025</div>
+                  <div className="text-2xl font-bold text-gray-700 mb-2">Dal 2025</div>
                   <p className="text-gray-800 text-sm font-semibold">24 ore lavorative massimo!</p>
                 </div>
                 <div className="bg-white/70 backdrop-blur-sm p-4 rounded-xl shadow-sm">
-                  <div className="text-2xl font-bold text-green-600 mb-2">Risultato</div>
+                  <div className="text-2xl font-bold text-gray-600 mb-2">Risultato</div>
                   <p className="text-gray-700 text-sm">Più velocità e trasparenza</p>
                 </div>
               </div>
@@ -1661,10 +1640,10 @@ export default function Landing() {
               {/* Background Pattern */}
               <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-green-50/30 to-blue-50/50"></div>
               
-              <div className="relative z-10 grid lg:grid-cols-5 gap-8 items-center">
+              <div className=" grid lg:grid-cols-5 gap-8 items-center">
                 <div className="lg:col-span-3 text-center lg:text-left">
                   {/* Header */}
-                  <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-100 to-green-100 px-4 py-2 rounded-full mb-6">
+                  <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-100/50 to-green-100/50 px-4 py-2 rounded-full mb-6">
                     <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
                     <span className="text-sm font-semibold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
                       ⚡ Quiz Veloce - Inizia Subito
@@ -1685,10 +1664,10 @@ export default function Landing() {
                     onClick={() => setQuizOpen(true)}
                   >
                     <div className="text-center">
-                      <div className="text-2xl font-black text-blue-600 mb-2">&lt; €50</div>
+                      <div className="text-2xl font-black text-gray-700 mb-2">&lt; €50</div>
                       <p className="text-sm text-gray-700 font-medium">Consumo Basso</p>
                       <div className="w-full h-1 bg-blue-200 rounded-full mt-3">
-                        <div className="w-1/3 h-full bg-gradient-to-r from-blue-500 to-green-500 rounded-full"></div>
+                        <div className="w-1/3 h-full bg-gradient-to-r from-blue-600 to-green-600 rounded-full"></div>
                       </div>
                     </div>
                   </Button>
@@ -1701,10 +1680,10 @@ export default function Landing() {
                       PIÙ COMUNE
                     </div>
                     <div className="text-center">
-                      <div className="text-2xl font-black text-green-600 mb-2">€50-100</div>
+                      <div className="text-2xl font-black text-gray-600 mb-2">€50-100</div>
                       <p className="text-sm text-gray-700 font-medium">Consumo Medio</p>
                       <div className="w-full h-1 bg-green-200 rounded-full mt-3">
-                        <div className="w-2/3 h-full bg-gradient-to-r from-blue-500 to-green-500 rounded-full"></div>
+                        <div className="w-2/3 h-full bg-gradient-to-r from-blue-600 to-green-600 rounded-full"></div>
                       </div>
                     </div>
                   </Button>
@@ -1714,10 +1693,10 @@ export default function Landing() {
                     onClick={() => setQuizOpen(true)}
                   >
                     <div className="text-center">
-                      <div className="text-2xl font-black text-blue-600 mb-2">&gt; €100</div>
+                      <div className="text-2xl font-black text-gray-700 mb-2">&gt; €100</div>
                       <p className="text-sm text-gray-700 font-medium">Consumo Alto</p>
                       <div className="w-full h-1 bg-blue-200 rounded-full mt-3">
-                        <div className="w-full h-full bg-gradient-to-r from-blue-500 to-green-500 rounded-full"></div>
+                        <div className="w-full h-full bg-gradient-to-r from-blue-600 to-green-600 rounded-full"></div>
                       </div>
                     </div>
                   </Button>
@@ -1726,7 +1705,7 @@ export default function Landing() {
                 {/* Trust Elements */}
                 <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-600 mb-8">
                   <div className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-green-500" />
+                    <Check className="h-4 w-4 text-gray-600" />
                     <span>100% Gratuito</span>
                   </div>
                   <div className="flex items-center gap-2">
@@ -1734,7 +1713,7 @@ export default function Landing() {
                     <span>Senza Impegno</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Sparkles className="h-4 w-4 text-green-500" />
+                    <Sparkles className="h-4 w-4 text-gray-600" />
                     <span>60 Secondi</span>
                   </div>
                 </div>
@@ -1756,7 +1735,7 @@ export default function Landing() {
                   <div className="mt-6 flex items-center justify-center gap-4">
                   <div className="flex">
                     {[...Array(5)].map((_, i) => (
-                      <div key={i} className="w-4 h-4 bg-gradient-to-r from-blue-400 to-green-400 rounded-full mr-1 flex items-center justify-center">
+                      <div key={i} className="w-4 h-4 bg-gradient-to-r bg-blue-500 rounded-full mr-1 flex items-center justify-center">
                         <span className="text-white text-xs">★</span>
                       </div>
                     ))}
@@ -1797,7 +1776,7 @@ export default function Landing() {
               
               {/* Right side - Contact Form */}
               <div className="lg:col-span-3 p-6 lg:p-8">
-                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-100 to-green-100 px-3 py-1.5 rounded-full mb-4">
+                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-100/50 to-green-100/50 px-3 py-1.5 rounded-full mb-4">
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                   <span className="text-xs font-semibold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
                     Consulenza Personalizzata
@@ -1869,19 +1848,19 @@ export default function Landing() {
                 <div className="mt-6 grid grid-cols-3 gap-4 text-center">
                   <div className="p-3 bg-gradient-to-br from-blue-50/80 to-green-50/80 rounded-xl border border-blue-100/50">
                     <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-2">
-                      <Check className="h-3 w-3 text-blue-600" />
+                      <Check className="h-3 w-3 text-gray-700" />
                     </div>
                     <span className="text-xs text-gray-700 font-medium">Consulenza gratuita</span>
                   </div>
                   <div className="p-3 bg-gradient-to-br from-blue-50/80 to-green-50/80 rounded-xl border border-blue-100/50">
                     <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-2">
-                      <Sparkles className="h-3 w-3 text-green-600" />
+                      <Sparkles className="h-3 w-3 text-gray-600" />
                     </div>
                     <span className="text-xs text-gray-700 font-medium">Analisi personalizzata</span>
                   </div>
                   <div className="p-3 bg-gradient-to-br from-blue-50/80 to-green-50/80 rounded-xl border border-blue-100/50">
                     <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-2">
-                      <Shield className="h-3 w-3 text-blue-600" />
+                      <Shield className="h-3 w-3 text-gray-700" />
                     </div>
                     <span className="text-xs text-gray-700 font-medium">Supporto completo</span>
                   </div>
@@ -1891,7 +1870,7 @@ export default function Landing() {
                   <div className="flex items-center gap-2">
                     <div className="flex">
                       {[...Array(5)].map((_, i) => (
-                        <div key={i} className="w-3 h-3 bg-gradient-to-r from-blue-400 to-green-400 rounded-full mr-1 flex items-center justify-center">
+                        <div key={i} className="w-3 h-3 bg-gradient-to-r bg-blue-500 rounded-full mr-1 flex items-center justify-center">
                           <span className="text-white text-xs">★</span>
                         </div>
                       ))}
@@ -1908,7 +1887,7 @@ export default function Landing() {
       </section>
 
       {/* Team Section */}
-      <section className="py-12 md:py-16 bg-gradient-to-r from-blue-50/30 to-green-50/30">
+      <section className="py-12 md:py-16 bg-gradient-to-r from-blue-50/20 to-green-50/20">
         <Container>
           <div className="text-center mb-12">
             <div className="mx-auto mb-4 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-sm text-gray-600">
@@ -1932,13 +1911,14 @@ export default function Landing() {
                     src="/ale.png" 
                     alt="Alessandra - Energy Consultant" 
                     className="w-full h-full object-cover rounded-full border-4 border-white shadow-2xl"
+                    style={{objectPosition: 'center -20px'}}
                   />
                 </div>
               </div>
               {/* Content Section - Bottom half */}
               <div className="p-6 text-center flex flex-col justify-center">
                 <h3 className="text-xl font-bold text-gray-900 mb-1">Alessandra</h3>
-                <p className="text-sm text-blue-600 font-semibold mb-3">Energy Consultant</p>
+                <p className="text-sm text-gray-700 font-semibold mb-3">Energy Consultant</p>
                 <p className="text-gray-600 text-sm leading-relaxed">
                   Esperta del mercato energetico tedesco con oltre 5 anni di esperienza. 
                   Ha aiutato migliaia di famiglie italiane a trovare le migliori tariffe energia.
@@ -1946,7 +1926,7 @@ export default function Landing() {
                 <div className="mt-4 flex flex-col items-center gap-2">
                   <div className="flex items-center gap-1">
                     {[...Array(5)].map((_, i) => (
-                      <div key={i} className="w-4 h-4 bg-gradient-to-r from-blue-400 to-green-400 rounded-full">
+                      <div key={i} className="w-4 h-4 bg-gradient-to-r bg-blue-500 rounded-full">
                         <span className="text-white text-xs flex items-center justify-center">★</span>
                       </div>
                     ))}
@@ -1965,14 +1945,14 @@ export default function Landing() {
                     src="/calogero.png" 
                     alt="Calogero - Founder & CEO" 
                     className="w-full h-full object-cover rounded-full border-4 border-white shadow-2xl"
-                    style={{objectPosition: '40px center'}}
+                    style={{objectPosition: '-60px center'}}
                   />
                 </div>
               </div>
               {/* Content Section - Bottom half */}
               <div className="p-6 text-center flex flex-col justify-center">
                 <h3 className="text-xl font-bold text-gray-900 mb-1">Calogero</h3>
-                <p className="text-sm text-blue-600 font-semibold mb-3">Founder & CEO</p>
+                <p className="text-sm text-gray-700 font-semibold mb-3">Founder & CEO</p>
                 <p className="text-gray-600 text-sm leading-relaxed">
                   Fondatore di Switchfy, vive in Germania da anni e conosce perfettamente 
                   le sfide degli italiani nel mercato energetico tedesco. La sua missione: semplificare il risparmio.
@@ -1980,12 +1960,12 @@ export default function Landing() {
                 <div className="mt-4 flex flex-col items-center gap-2">
                   <div className="flex items-center gap-1">
                     {[...Array(5)].map((_, i) => (
-                      <div key={i} className="w-4 h-4 bg-gradient-to-r from-blue-400 to-green-400 rounded-full">
+                      <div key={i} className="w-4 h-4 bg-gradient-to-r bg-blue-500 rounded-full">
                         <span className="text-white text-xs flex items-center justify-center">★</span>
                       </div>
                     ))}
                   </div>
-                  <span className="text-sm text-gray-700 font-medium">5.000+ clienti aiutati</span>
+                  <span className="text-sm text-gray-700 font-medium">500+ clienti aiutati</span>
                 </div>
               </div>
             </Card>
@@ -1997,7 +1977,7 @@ export default function Landing() {
       <section className="py-12 md:py-16">
         <Container>
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-100 to-green-100 px-3 py-1.5 rounded-full mb-4">
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-100/50 to-green-100/50 px-3 py-1.5 rounded-full mb-4">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
               <span className="text-xs font-semibold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
                 Testimonianze
@@ -2010,12 +1990,9 @@ export default function Landing() {
           <div className="grid gap-6 md:grid-cols-3 mb-8">
             {/* Testimonianza 1 */}
             <Card className="border-0 bg-white/80 backdrop-blur-sm shadow-lg p-6 group hover:shadow-xl transition-all duration-300 relative">
-              <div className="absolute top-4 right-4 opacity-50 group-hover:opacity-70 transition-all duration-300">
-                <img src="/slogo.png" alt="" className="w-5 h-5" />
-              </div>
               <div className="flex items-center gap-1 mb-4">
                 {[...Array(5)].map((_, i) => (
-                  <div key={i} className="w-4 h-4 bg-gradient-to-r from-blue-400 to-green-400 rounded-full flex items-center justify-center">
+                  <div key={i} className="w-4 h-4 bg-gradient-to-r bg-blue-500 rounded-full flex items-center justify-center">
                     <span className="text-white text-xs">★</span>
                   </div>
                 ))}
@@ -2025,7 +2002,7 @@ export default function Landing() {
                 Mi hanno seguito passo passo e ora risparmio €850 l'anno sulla bolletta!"
               </blockquote>
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-green-500 rounded-full flex items-center justify-center">
+                <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-green-600 rounded-full flex items-center justify-center">
                   <span className="text-white font-bold text-sm">MR</span>
                 </div>
                 <div>
@@ -2037,12 +2014,9 @@ export default function Landing() {
 
             {/* Testimonianza 2 */}
             <Card className="border-0 bg-white/80 backdrop-blur-sm shadow-lg p-6 group hover:shadow-xl transition-all duration-300 relative">
-              <div className="absolute top-4 right-4 opacity-50 group-hover:opacity-70 transition-all duration-300">
-                <img src="/slogo.png" alt="" className="w-5 h-5" />
-              </div>
               <div className="flex items-center gap-1 mb-4">
                 {[...Array(5)].map((_, i) => (
-                  <div key={i} className="w-4 h-4 bg-gradient-to-r from-blue-400 to-green-400 rounded-full flex items-center justify-center">
+                  <div key={i} className="w-4 h-4 bg-gradient-to-r bg-blue-500 rounded-full flex items-center justify-center">
                     <span className="text-white text-xs">★</span>
                   </div>
                 ))}
@@ -2052,7 +2026,7 @@ export default function Landing() {
                 Risparmio oltre €600 l'anno e ho energia 100% verde. Consigliatissimo!"
               </blockquote>
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-green-500 rounded-full flex items-center justify-center">
+                <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-green-600 rounded-full flex items-center justify-center">
                   <span className="text-white font-bold text-sm">LC</span>
                 </div>
                 <div>
@@ -2064,12 +2038,9 @@ export default function Landing() {
 
             {/* Testimonianza 3 */}
             <Card className="border-0 bg-white/80 backdrop-blur-sm shadow-lg p-6 group hover:shadow-xl transition-all duration-300 relative">
-              <div className="absolute top-4 right-4 opacity-50 group-hover:opacity-70 transition-all duration-300">
-                <img src="/slogo.png" alt="" className="w-5 h-5" />
-              </div>
               <div className="flex items-center gap-1 mb-4">
                 {[...Array(5)].map((_, i) => (
-                  <div key={i} className="w-4 h-4 bg-gradient-to-r from-blue-400 to-green-400 rounded-full flex items-center justify-center">
+                  <div key={i} className="w-4 h-4 bg-gradient-to-r bg-blue-500 rounded-full flex items-center justify-center">
                     <span className="text-white text-xs">★</span>
                   </div>
                 ))}
@@ -2079,7 +2050,7 @@ export default function Landing() {
                 Il supporto in italiano è fantastico e ora pago il 40% in meno. Grazie!"
               </blockquote>
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-green-500 rounded-full flex items-center justify-center">
+                <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-green-600 rounded-full flex items-center justify-center">
                   <span className="text-white font-bold text-sm">AF</span>
                 </div>
                 <div>
@@ -2115,7 +2086,7 @@ export default function Landing() {
             <Card className="border-0 bg-white/60 backdrop-blur-sm p-4 shadow-lg">
               <div className="flex items-center gap-1 mb-3">
                 {[...Array(5)].map((_, i) => (
-                  <div key={i} className="w-3 h-3 bg-gradient-to-r from-blue-400 to-green-400 rounded-full flex items-center justify-center">
+                  <div key={i} className="w-3 h-3 bg-gradient-to-r bg-blue-500 rounded-full flex items-center justify-center">
                     <span className="text-white text-xs">★</span>
                   </div>
                 ))}
@@ -2129,7 +2100,7 @@ export default function Landing() {
             <Card className="border-0 bg-white/60 backdrop-blur-sm p-4 shadow-lg">
               <div className="flex items-center gap-1 mb-3">
                 {[...Array(5)].map((_, i) => (
-                  <div key={i} className="w-3 h-3 bg-gradient-to-r from-blue-400 to-green-400 rounded-full flex items-center justify-center">
+                  <div key={i} className="w-3 h-3 bg-gradient-to-r bg-blue-500 rounded-full flex items-center justify-center">
                     <span className="text-white text-xs">★</span>
                   </div>
                 ))}
@@ -2143,7 +2114,7 @@ export default function Landing() {
             <Card className="border-0 bg-white/60 backdrop-blur-sm p-4 shadow-lg">
               <div className="flex items-center gap-1 mb-3">
                 {[...Array(5)].map((_, i) => (
-                  <div key={i} className="w-3 h-3 bg-gradient-to-r from-blue-400 to-green-400 rounded-full flex items-center justify-center">
+                  <div key={i} className="w-3 h-3 bg-gradient-to-r bg-blue-500 rounded-full flex items-center justify-center">
                     <span className="text-white text-xs">★</span>
                   </div>
                 ))}
@@ -2157,7 +2128,7 @@ export default function Landing() {
             <Card className="border-0 bg-white/60 backdrop-blur-sm p-4 shadow-lg">
               <div className="flex items-center gap-1 mb-3">
                 {[...Array(5)].map((_, i) => (
-                  <div key={i} className="w-3 h-3 bg-gradient-to-r from-blue-400 to-green-400 rounded-full flex items-center justify-center">
+                  <div key={i} className="w-3 h-3 bg-gradient-to-r bg-blue-500 rounded-full flex items-center justify-center">
                     <span className="text-white text-xs">★</span>
                   </div>
                 ))}
@@ -2175,7 +2146,7 @@ export default function Landing() {
               {/* Background Pattern */}
               <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 via-transparent to-green-50/30"></div>
               
-              <div className="relative z-10 grid lg:grid-cols-3 gap-8 items-center">
+              <div className=" grid lg:grid-cols-3 gap-8 items-center">
                 <div className="lg:col-span-2">
                 <div className="inline-flex items-center gap-2 bg-gradient-to-r from-green-100 to-blue-100 px-4 py-2 rounded-full mb-6">
                   <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
@@ -2189,7 +2160,7 @@ export default function Landing() {
                 </h2>
                 <p className="text-lg text-gray-700 mb-8 max-w-2xl mx-auto leading-relaxed">
                   Più di 5.000 famiglie italiane in Germania stanno già risparmiando centinaia di euro ogni anno. 
-                  <strong className="text-green-600"> Il tuo quiz ti aspetta.</strong>
+                  <strong className="text-gray-600"> Il tuo quiz ti aspetta.</strong>
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
@@ -2247,11 +2218,11 @@ export default function Landing() {
             {faqs.map((f, i) => (
               <Card key={i} className="group hover:shadow-lg transition-all duration-300 border-0 bg-white/80 backdrop-blur-sm p-5 shadow-lg">
                 <div className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-6 h-6 bg-gradient-to-br from-blue-500 to-green-500 rounded-xl flex items-center justify-center">
+                  <div className="flex-shrink-0 w-6 h-6 bg-gradient-to-br from-blue-600 to-green-600 rounded-xl flex items-center justify-center">
                     <span className="text-white font-bold text-xs">{i + 1}</span>
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-base font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">{f.q}</h3>
+                    <h3 className="text-base font-bold text-gray-900 mb-2 group-hover:text-gray-700 transition-colors">{f.q}</h3>
                     <p className="text-gray-600 leading-relaxed text-sm">{f.a}</p>
                   </div>
                 </div>
@@ -2268,7 +2239,7 @@ export default function Landing() {
           <div className="grid gap-6 md:grid-cols-2">
             <Card className="border-0 bg-white/80 backdrop-blur-sm shadow-lg p-5">
               <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-green-500 rounded-xl flex items-center justify-center">
+                <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-green-600 rounded-xl flex items-center justify-center">
                   <Shield className="h-4 w-4 text-white" />
                 </div>
                 <h3 className="text-lg font-bold text-gray-900">Privacy Policy</h3>
@@ -2280,15 +2251,15 @@ export default function Landing() {
               <div className="mt-4 p-3 bg-gradient-to-r from-green-50 to-blue-50 rounded-xl border border-green-200/50">
                 <div className="flex items-center gap-2">
                   <div className="w-4 h-4 bg-green-100 rounded-full flex items-center justify-center">
-                    <Check className="h-2.5 w-2.5 text-green-600" />
+                    <Check className="h-2.5 w-2.5 text-gray-600" />
                   </div>
-                  <p className="text-xs text-green-700 font-medium">Conforme GDPR 2024</p>
+                  <p className="text-xs text-gray-800 font-medium">Conforme GDPR 2024</p>
                 </div>
               </div>
             </Card>
             <Card className="border-0 bg-white/80 backdrop-blur-sm shadow-lg p-5">
               <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-green-500 rounded-xl flex items-center justify-center">
+                <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-green-600 rounded-xl flex items-center justify-center">
                   <FileText className="h-4 w-4 text-white" />
                 </div>
                 <h3 className="text-lg font-bold text-gray-900">Impressum</h3>
@@ -2319,7 +2290,7 @@ export default function Landing() {
           <div className="absolute inset-0 bg-black/40"></div>
         </div>
         
-        <Container className="relative z-10">
+        <Container className="">
           <div className="text-center text-white">
             <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
               <div className="w-3 h-3 bg-white rounded-full animate-pulse"></div>
@@ -2385,10 +2356,6 @@ export default function Landing() {
       <footer className="bg-gray-900 text-white py-12">
         <Container>
           <div className="grid gap-6 md:grid-cols-4 relative">
-            {/* Slogo in footer */}
-            <div className="absolute top-4 right-4 opacity-50 hover:opacity-70 transition-all duration-300">
-              <img src="/slogo.png" alt="" className="w-6 h-6" />
-            </div>
             <div className="md:col-span-2">
               <div className="flex items-center gap-3 mb-4">
                 <img src="/logo.png" alt="Switchfy" className="h-8 w-auto" />
@@ -2434,7 +2401,7 @@ export default function Landing() {
             <div className="flex items-center gap-4 mt-3 md:mt-0">
               <div className="flex items-center gap-2 text-gray-400">
                 <div className="w-4 h-4 bg-green-500/20 rounded-full flex items-center justify-center">
-                  <Shield className="h-2.5 w-2.5 text-green-500" />
+                  <Shield className="h-2.5 w-2.5 text-gray-600" />
                 </div>
                 <span className="text-xs">GDPR Compliant</span>
               </div>
