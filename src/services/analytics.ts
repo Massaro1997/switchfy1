@@ -16,7 +16,7 @@ const getSessionId = (): string => {
 // Track analytics events
 export const trackEvent = async (
   eventType: string, 
-  metadata: Record<string, any> = {},
+  metadata: Record<string, unknown> = {},
   userId?: string
 ) => {
   if (typeof window === 'undefined') return; // Skip on server-side rendering
