@@ -1024,6 +1024,10 @@ export default function Landing() {
               FAQ
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 via-blue-500 to-green-500 group-hover:w-full transition-all"></span>
             </a>
+            <a href="/dashboard" className="text-gray-700 hover:text-gray-700 font-medium transition-colors relative group">
+              Dashboard
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 via-blue-500 to-green-500 group-hover:w-full transition-all"></span>
+            </a>
             <button 
               onClick={toggleLanguage}
               className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-blue-50 to-green-50 hover:from-blue-100 hover:to-green-100 rounded-lg transition-all hover:scale-105 border border-gray-200/50"

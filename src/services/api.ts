@@ -1,9 +1,8 @@
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://ff82d478-d7da-4a3a-96ea-83d4d70f559c-00-3kgl6pxwclsqg.janeway.replit.dev';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || '';
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 
 const apiHeaders = {
   'Content-Type': 'application/json',
-  ...(API_KEY && { 'X-API-Key': API_KEY }),
 };
 
 export const api = {
@@ -175,12 +174,8 @@ export const api = {
       
       const response = await fetch(`${API_BASE_URL}/api/leads/contact-form`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-API-Key': API_KEY || '',
-        },
+        headers: apiHeaders,
         body: JSON.stringify(contactData),
-        mode: 'cors',
       });
       
       if (!response.ok) {

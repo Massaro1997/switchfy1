@@ -25,7 +25,8 @@
       "WebFetch(domain:www.switchfy.de)",
       "WebFetch(domain:switchfy1-cxlf2kvol-calogeros-projects-bf0873a1.vercel.app)",
       "Bash(rm:*)",
-      "WebFetch(domain:ff82d478-d7da-4a3a-96ea-83d4d70f559c-00-3kgl6pxwclsqg.janeway.replit.dev)"
+      "WebFetch(domain:ff82d478-d7da-4a3a-96ea-83d4d70f559c-00-3kgl6pxwclsqg.janeway.replit.dev)",
+      "Bash(curl:*)"
     ],
     "deny": [],
     "ask": [],
