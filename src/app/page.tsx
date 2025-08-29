@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Check, ChevronRight, Shield, Sparkles, Play, FileText, HelpCircle } from "lucide-react";
 import { api } from "@/services/api";
+import { trackEvent, ANALYTICS_EVENTS, useAnalytics } from "@/services/analytics";
 
 // --------- Config ---------
 
@@ -880,6 +881,25 @@ export default function Landing() {
   const [isSubmittingContact, setIsSubmittingContact] = useState(false);
   const [comparatorOpen, setComparatorOpen] = useState(false);
   const [comparatorData, setComparatorData] = useState<{cap: string; persone: string; abitazione: string} | null>(null);
+  
+  const { trackEvent: track } = useAnalytics();
+
+  // Track page visit on component mount
+  useEffect(() => {
+    track(ANALYTICS_EVENTS.PAGE_VISIT, {
+      source: document.referrer ? 'referral' : 'direct',
+      userAgent: navigator.userAgent
+    });
+  }, []);
+
+  // Helper function to handle quiz start with tracking
+  const handleQuizStart = (context: string = 'unknown') => {
+    track(ANALYTICS_EVENTS.QUIZ_START_CLICK, {
+      context,
+      timestamp: new Date().toISOString()
+    });
+    setQuizOpen(true);
+  };
 
   const handleContactSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -902,6 +922,15 @@ export default function Landing() {
       source: 'website-form'
     };
 
+    // Track form submission attempt
+    track(ANALYTICS_EVENTS.FORM_SUBMIT, {
+      formType: 'contact',
+      source: 'website-form',
+      email: data.email,
+      hasPhone: !!data.phone,
+      hasNotes: !!data.notes
+    });
+
     try {
       console.log('Sending data:', data);
       
@@ -921,6 +950,16 @@ export default function Landing() {
 
       const result = await response.json();
       console.log('Contact form submitted successfully:', result);
+      
+      // Track successful lead conversion
+      track(ANALYTICS_EVENTS.LEAD_CONVERSION, {
+        formType: 'contact',
+        source: 'website-form',
+        leadId: result.lead_id,
+        email: data.email,
+        conversionTime: new Date().toISOString()
+      });
+      
       alert('Grazie! Ti contatteremo presto per la tua consulenza gratuita. Il tuo lead è stato registrato con successo!');
       form.reset();
     } catch (error) {
@@ -987,7 +1026,7 @@ export default function Landing() {
               Privacy & Impressum
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all"></span>
             </a>
-            <Button className="bg-gradient-to-r from-blue-600 via-blue-500 to-green-500 !text-white hover:from-blue-700 hover:via-blue-600 hover:to-green-600 px-6 py-2.5 font-semibold shadow-md hover:shadow-lg transform hover:scale-105 transition-all" onClick={() => setQuizOpen(true)}>
+            <Button className="bg-gradient-to-r from-blue-600 via-blue-500 to-green-500 !text-white hover:from-blue-700 hover:via-blue-600 hover:to-green-600 px-6 py-2.5 font-semibold shadow-md hover:shadow-lg transform hover:scale-105 transition-all" onClick={() => handleQuizStart('header')}>
               Inizia il quiz
             </Button>
           </nav>
@@ -1058,7 +1097,7 @@ export default function Landing() {
               </div>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
-              <Button className="group bg-gradient-to-r from-blue-600 via-blue-500 to-green-500 !text-white hover:from-blue-700 hover:via-blue-600 hover:to-green-600 px-8 py-4 text-lg font-semibold shadow-xl hover:shadow-2xl transform hover:scale-[1.02] transition-all rounded-2xl border border-white/20" onClick={() => setQuizOpen(true)}>
+              <Button className="group bg-gradient-to-r from-blue-600 via-blue-500 to-green-500 !text-white hover:from-blue-700 hover:via-blue-600 hover:to-green-600 px-8 py-4 text-lg font-semibold shadow-xl hover:shadow-2xl transform hover:scale-[1.02] transition-all rounded-2xl border border-white/20" onClick={() => handleQuizStart('hero_main')}>
                 <span className="flex items-center gap-2">
                   Inizia il Quiz
                   <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors">
