@@ -1922,12 +1922,12 @@ export default function Landing() {
             </p>
           </div>
           
-          <div className="grid gap-10 md:grid-cols-2 max-w-6xl mx-auto">
+          <div className="grid gap-8 md:grid-cols-2 max-w-4xl mx-auto">
             {/* Alessandra Card */}
             <Card className="border-0 bg-white/80 backdrop-blur-sm shadow-xl overflow-hidden">
               {/* Photo Section - Takes up entire top half */}
               <div className="h-64 flex items-center justify-center p-4 bg-gradient-to-br from-blue-50/20 to-white">
-                <div className="w-72 h-72 relative">
+                <div className="w-60 h-60 relative">
                   <img 
                     src="/ale.png" 
                     alt="Alessandra - Energy Consultant" 
@@ -1960,12 +1960,12 @@ export default function Landing() {
             <Card className="border-0 bg-white/80 backdrop-blur-sm shadow-xl overflow-hidden">
               {/* Photo Section - Takes up entire top half */}
               <div className="h-64 flex items-center justify-center p-4 bg-gradient-to-br from-green-50/20 to-white">
-                <div className="w-72 h-72 relative">
+                <div className="w-60 h-60 relative">
                   <img 
                     src="/calogero.png" 
                     alt="Calogero - Founder & CEO" 
                     className="w-full h-full object-cover rounded-full border-4 border-white shadow-2xl"
-                    style={{objectPosition: '-20px center'}}
+                    style={{objectPosition: '40px center'}}
                   />
                 </div>
               </div>
