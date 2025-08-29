@@ -126,6 +126,82 @@ export const translations = {
     quizFormHouseType: "Che tipo di abitazione hai?",
     quizFormFillAll: "Compila tutti i campi per continuare",
     quizFormButton: "Scopri le Migliori Offerte",
+    
+    // Process steps
+    processStepsTitle: "I nostri 3 passi vincenti",
+    step1Title: "Fai il Quiz",
+    step1Description: "Rispondi a poche semplici domande sui tuoi consumi energetici",
+    step2Title: "Confronta le Offerte",
+    step2Description: "Visualizza le migliori tariffe personalizzate per te",
+    step3Title: "Risparmia Subito",
+    step3Description: "Attiva la nuova tariffa e inizia a risparmiare dal primo giorno",
+    
+    // Offers section
+    offersHeader: "Le migliori offerte energetiche per te",
+    offersSubheader: "Confronta e scegli il fornitore perfetto",
+    
+    // People options
+    people1: "1 persona",
+    people2: "2 persone", 
+    people3: "3 persone",
+    people4: "4+ persone",
+    
+    // House types
+    apartment: "Appartamento",
+    house: "Casa",
+    studio: "Monolocale",
+    
+    // Energy types
+    electricityOnly: "Solo Luce",
+    gasOnly: "Solo Gas",
+    both: "Luce + Gas",
+    bothDescription: "Luce + Gas (entrambi)",
+    
+    // Footer
+    footerCompany: "Azienda",
+    footerServices: "Servizi",
+    footerSupport: "Supporto",
+    footerPrivacy: "Privacy & Impressum",
+    footerContact: "Contatto",
+    
+    // Form labels and placeholders
+    nameLabel: "Nome completo",
+    emailLabel: "Email",
+    phoneLabel: "Telefono (opzionale)",
+    cityLabel: "Città",
+    notesLabel: "Note aggiuntive (opzionale)",
+    
+    // Buttons and actions
+    submitButton: "Invia",
+    closeButton: "Chiudi",
+    backButton: "Indietro",
+    nextButton: "Avanti",
+    
+    // Status messages
+    successMessage: "Grazie! Ti ricontatteremo presto con le migliori offerte per te.",
+    errorMessage: "Errore nell'invio. Riprova.",
+    
+    // Alert messages
+    emailRequired: "Inserisci una email valida",
+    errorSavingData: "Errore nel salvare i dati. Riprova.",
+    capRequired: "Inserisci un CAP valido di 5 cifre (es. 10115).",
+    capNotFound: "CAP non trovato nel database tedesco. Inserisci un CAP tedesco valido (es. 10115).",
+    errorSavingAnswer: "Errore nel salvare la risposta. Riprova.",
+    calculationError: "Errore nel calcolo. Riprova.",
+    consultationSuccess: "Grazie! Ti contatteremo presto per la tua consulenza gratuita. Il tuo lead è stato registrato con successo!",
+    
+    // Consumption levels
+    consumptionLow: "Consumo Basso",
+    consumptionMedium: "Consumo Medio", 
+    consumptionHigh: "Consumo Alto",
+    
+    // Misc
+    freeService: "Servizio gratuito",
+    noCommitment: "Nessun impegno",
+    gdprCompliant: "Conformità GDPR",
+    realTimePrices: "Prezzi aggiornati in tempo reale",
+    secureAndCompliant: "100% sicuro e GDPR compliant",
+    completelyFree: "Completamente gratuito",
   },
   de: {
     // Header & Navigation
@@ -254,6 +330,82 @@ export const translations = {
     quizFormHouseType: "Welche Art von Wohnung haben Sie?",
     quizFormFillAll: "Bitte füllen Sie alle Felder aus, um fortzufahren",
     quizFormButton: "Beste Angebote entdecken",
+    
+    // Process steps
+    processStepsTitle: "Unsere 3 Erfolgsschritte",
+    step1Title: "Quiz machen",
+    step1Description: "Beantworten Sie einige einfache Fragen zu Ihrem Energieverbrauch",
+    step2Title: "Angebote vergleichen",
+    step2Description: "Sehen Sie die besten personalisierten Tarife für Sie",
+    step3Title: "Sofort sparen",
+    step3Description: "Aktivieren Sie den neuen Tarif und sparen Sie vom ersten Tag an",
+    
+    // Offers section
+    offersHeader: "Die besten Energieangebote für Sie",
+    offersSubheader: "Vergleichen Sie und wählen Sie den perfekten Anbieter",
+    
+    // People options
+    people1: "1 Person",
+    people2: "2 Personen",
+    people3: "3 Personen", 
+    people4: "4+ Personen",
+    
+    // House types
+    apartment: "Wohnung",
+    house: "Haus",
+    studio: "Studio",
+    
+    // Energy types
+    electricityOnly: "Nur Strom",
+    gasOnly: "Nur Gas",
+    both: "Strom + Gas",
+    bothDescription: "Strom + Gas (beide)",
+    
+    // Footer
+    footerCompany: "Unternehmen",
+    footerServices: "Dienstleistungen",
+    footerSupport: "Support",
+    footerPrivacy: "Datenschutz & Impressum",
+    footerContact: "Kontakt",
+    
+    // Form labels and placeholders
+    nameLabel: "Vollständiger Name",
+    emailLabel: "E-Mail",
+    phoneLabel: "Telefon (optional)",
+    cityLabel: "Stadt",
+    notesLabel: "Zusätzliche Notizen (optional)",
+    
+    // Buttons and actions
+    submitButton: "Absenden",
+    closeButton: "Schließen",
+    backButton: "Zurück",
+    nextButton: "Weiter",
+    
+    // Status messages
+    successMessage: "Danke! Wir werden Sie bald mit den besten Angeboten für Sie kontaktieren.",
+    errorMessage: "Fehler beim Senden. Versuchen Sie es erneut.",
+    
+    // Alert messages
+    emailRequired: "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+    errorSavingData: "Fehler beim Speichern der Daten. Versuchen Sie es erneut.",
+    capRequired: "Bitte geben Sie eine gültige 5-stellige PLZ ein (z.B. 10115).",
+    capNotFound: "PLZ nicht in der deutschen Datenbank gefunden. Bitte geben Sie eine gültige deutsche PLZ ein (z.B. 10115).",
+    errorSavingAnswer: "Fehler beim Speichern der Antwort. Versuchen Sie es erneut.",
+    calculationError: "Fehler bei der Berechnung. Versuchen Sie es erneut.",
+    consultationSuccess: "Danke! Wir werden Sie bald für Ihre kostenlose Beratung kontaktieren. Ihr Lead wurde erfolgreich registriert!",
+    
+    // Consumption levels
+    consumptionLow: "Niedriger Verbrauch",
+    consumptionMedium: "Mittlerer Verbrauch",
+    consumptionHigh: "Hoher Verbrauch",
+    
+    // Misc
+    freeService: "Kostenloser Service",
+    noCommitment: "Keine Verpflichtung",
+    gdprCompliant: "GDPR-konform",
+    realTimePrices: "Preise in Echtzeit aktualisiert",
+    secureAndCompliant: "100% sicher und GDPR-konform",
+    completelyFree: "Völlig kostenlos",
   }
 };
 

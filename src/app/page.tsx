@@ -47,11 +47,15 @@ function SectionTitle({ k, title, subtitle }: { k: string; title: string; subtit
 function ComparisonPopup({ 
   isOpen, 
   onClose, 
-  data 
+  data,
+  t,
+  language
 }: { 
   isOpen: boolean; 
   onClose: () => void; 
   data: {cap: string; persone: string; abitazione: string} | null;
+  t: (key: TranslationKey) => string;
+  language: string;
 }) {
   if (!isOpen || !data) return null;
 
@@ -73,7 +77,7 @@ function ComparisonPopup({
       ...provider,
       monthlyPrice: basePrice + (index * 15) + Math.floor(Math.random() * 20),
       annualSavings: 850 - (index * 100) + Math.floor(Math.random() * 100),
-      badge: index === 0 ? 'Più conveniente' : index === 1 ? 'Più popolare' : null,
+      badge: index === 0 ? (language === 'it' ? 'Più conveniente' : 'Am günstigsten') : index === 1 ? (language === 'it' ? 'Più popolare' : 'Beliebtester') : null,
       bonus: index < 2 ? `€${50 + index * 25} bonus` : null
     }));
   };
@@ -209,15 +213,15 @@ function ComparisonPopup({
             <div className="flex flex-wrap items-center gap-4">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                <p className="text-sm font-medium text-gray-700">⚡ Prezzi aggiornati in tempo reale</p>
+                <p className="text-sm font-medium text-gray-700">⚡ {t('realTimePrices')}</p>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                <p className="text-sm font-medium text-gray-700">🔒 100% sicuro e GDPR compliant</p>
+                <p className="text-sm font-medium text-gray-700">🔒 {t('secureAndCompliant')}</p>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                <p className="text-sm font-medium text-gray-700">✨ Completamente gratuito</p>
+                <p className="text-sm font-medium text-gray-700">✨ {t('completelyFree')}</p>
               </div>
             </div>
             <Button 
@@ -225,7 +229,7 @@ function ComparisonPopup({
               className="group bg-white/80 backdrop-blur-sm border-2 border-gray-200 hover:border-gray-300 hover:bg-white !text-gray-700 px-6 py-3 rounded-2xl transition-all duration-300 hover:shadow-lg"
             >
               <span className="flex items-center gap-2">
-                Chiudi
+                {t('closeButton')}
                 <span className="group-hover:rotate-90 transition-transform duration-300">×</span>
               </span>
             </Button>
@@ -269,8 +273,8 @@ function QuickQuizForm({ onShowComparator, t, language }: { onShowComparator: (d
       setAbitazione('');
       
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : 'Errore nel calcolo. Riprova.';
-      alert(`Errore: ${errorMessage}`);
+      const errorMessage = error instanceof Error ? error.message : t('calculationError');
+      alert(`${language === 'it' ? 'Errore' : 'Fehler'}: ${errorMessage}`);
     } finally {
       setLoading(false);
     }
@@ -414,7 +418,7 @@ function QuickQuizForm({ onShowComparator, t, language }: { onShowComparator: (d
 }
 
 // --------- Simple Working Quiz ---------
-function QuizWizard({ onClose, t }: { onClose: () => void, t: (key: TranslationKey) => string }) {
+function QuizWizard({ onClose, t, language }: { onClose: () => void, t: (key: TranslationKey) => string, language: string }) {
   const [step, setStep] = useState(0);
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
@@ -443,7 +447,7 @@ function QuizWizard({ onClose, t }: { onClose: () => void, t: (key: TranslationK
   const handleStart = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email.trim()) {
-      alert("Inserisci una email valida");
+      alert(t('emailRequired'));
       return;
     }
     
@@ -463,7 +467,7 @@ function QuizWizard({ onClose, t }: { onClose: () => void, t: (key: TranslationK
       setStep(1);
     } catch (error) {
       console.error("Error starting quiz:", error);
-      alert("Errore nel salvare i dati. Riprova.");
+      alert(t('errorSavingData'));
     } finally {
       setLoading(false);
     }
@@ -490,7 +494,7 @@ function QuizWizard({ onClose, t }: { onClose: () => void, t: (key: TranslationK
       if (step === 1) {
         // Basic validation first
         if (!/^\d{5}$/.test(answer)) {
-          alert('Inserisci un CAP valido di 5 cifre (es. 10115).');
+          alert(t('capRequired'));
           setLoading(false);
           return;
         }
@@ -512,7 +516,7 @@ function QuizWizard({ onClose, t }: { onClose: () => void, t: (key: TranslationK
               setLoading(false);
               return;
             } else {
-              alert('CAP non trovato nel database tedesco. Inserisci un CAP tedesco valido (es. 10115).');
+              alert(t('capNotFound'));
               setLoading(false);
               return;
             }
@@ -549,7 +553,7 @@ function QuizWizard({ onClose, t }: { onClose: () => void, t: (key: TranslationK
       
     } catch (error) {
       console.error("Error saving answer:", error);
-      alert("Errore nel salvare la risposta. Riprova.");
+      alert(t('errorSavingAnswer'));
     } finally {
       setLoading(false);
     }
@@ -571,8 +575,8 @@ function QuizWizard({ onClose, t }: { onClose: () => void, t: (key: TranslationK
         <div className="bg-gradient-to-r from-blue-600 via-blue-500 to-green-500 p-4 sm:p-6 rounded-t-3xl">
           <div className="flex items-center justify-between">
             <div className="text-white">
-              <h3 className="text-2xl font-bold">Quiz Smart</h3>
-              <p className="text-blue-100 mt-1">Ottieni la tua offerta personalizzata</p>
+              <h3 className="text-2xl font-bold">{language === 'it' ? 'Quiz Smart' : 'Smart Quiz'}</h3>
+              <p className="text-blue-100 mt-1">{language === 'it' ? 'Ottieni la tua offerta personalizzata' : 'Erhalten Sie Ihr personalisiertes Angebot'}</p>
             </div>
             <button onClick={onClose} aria-label="Chiudi" className="rounded-full p-2 bg-white/20 hover:bg-white/30 !text-white transition-colors">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -635,12 +639,12 @@ function QuizWizard({ onClose, t }: { onClose: () => void, t: (key: TranslationK
             <div className="text-center">
               <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium mb-4">
                 <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-                Domanda {step} di 3
+                {language === 'it' ? `Domanda ${step} di 3` : `Frage ${step} von 3`}
               </div>
               <h4 className="text-2xl font-bold text-gray-900 mb-2">
-                {step === 1 && "Qual è il tuo codice postale (CAP)?"}
-                {step === 2 && "Quante persone vivono in casa?"}
-                {step === 3 && "Di cosa hai bisogno?"}
+                {step === 1 && (language === 'it' ? 'Qual è il tuo codice postale (CAP)?' : 'Wie lautet Ihre Postleitzahl (PLZ)?')}
+                {step === 2 && (language === 'it' ? 'Quante persone vivono in casa?' : 'Wie viele Personen leben in Ihrem Haushalt?')}
+                {step === 3 && (language === 'it' ? 'Di cosa hai bisogno?' : 'Was benötigen Sie?')}
               </h4>
             </div>
             <div className="grid gap-3 min-h-[200px] content-center" style={{
@@ -691,11 +695,11 @@ function QuizWizard({ onClose, t }: { onClose: () => void, t: (key: TranslationK
                 </div>
               )}
               {step === 2 && [
-                { label: "1 persona", icon: "1️⃣", value: "1 persona" },
-                { label: "2 persone", icon: "2️⃣", value: "2 persone" },
-                { label: "3 persone", icon: "3️⃣", value: "3 persone" },
-                { label: "4 persone", icon: "4️⃣", value: "4 persone" },
-                { label: "5+ persone", icon: "5️⃣", value: "5+ persone" }
+                { label: t('people1'), icon: "1️⃣", value: t('people1') },
+                { label: t('people2'), icon: "2️⃣", value: t('people2') },
+                { label: t('people3'), icon: "3️⃣", value: t('people3') },
+                { label: t('people4'), icon: "4️⃣", value: t('people4') },
+                { label: "5+ " + (language === 'it' ? 'persone' : 'Personen'), icon: "5️⃣", value: "5+ " + (language === 'it' ? 'persone' : 'Personen') }
               ].map(opt => (
                 <Button key={opt.value} className="group bg-white border border-gray-200 hover:border-green-400 hover:bg-green-50 p-4 h-auto text-center transition-all hover:scale-102 hover:shadow-md rounded-xl" onClick={() => handleAnswer(opt.value)} disabled={loading}>
                   <div className="flex items-center justify-center gap-3">
@@ -705,9 +709,9 @@ function QuizWizard({ onClose, t }: { onClose: () => void, t: (key: TranslationK
                 </Button>
               ))}
               {step === 3 && [
-                { label: "Solo Luce", icon: "💡", value: "Solo Luce", color: "from-yellow-400 to-orange-400" },
-                { label: "Solo Gas", icon: "🔥", value: "Solo Gas", color: "from-blue-400 to-blue-500" },
-                { label: "Luce + Gas", icon: "", value: "Luce + Gas (entrambi)", color: "from-green-400 to-green-500", isCombo: true }
+                { label: t('electricityOnly'), icon: "💡", value: t('electricityOnly'), color: "from-yellow-400 to-orange-400" },
+                { label: t('gasOnly'), icon: "🔥", value: t('gasOnly'), color: "from-blue-400 to-blue-500" },
+                { label: t('both'), icon: "", value: t('bothDescription'), color: "from-green-400 to-green-500", isCombo: true }
               ].map(opt => (
                 <Button key={opt.value} className={`group bg-gradient-to-br ${opt.color} border-2 border-white/20 hover:border-white/40 hover:shadow-xl p-8 h-auto text-center transition-all hover:scale-105 !text-white`} onClick={() => handleAnswer(opt.value)} disabled={loading}>
                   <div className="flex flex-col items-center justify-center gap-4">
@@ -960,13 +964,13 @@ export default function Landing() {
         conversionTime: new Date().toISOString()
       });
       
-      alert('Grazie! Ti contatteremo presto per la tua consulenza gratuita. Il tuo lead è stato registrato con successo!');
+      alert(t('consultationSuccess'));
       form.reset();
     } catch (error) {
       console.error('Full error details:', error);
       const errorMessage = error instanceof Error ? error.message : 'Errore di connessione';
       console.error('Error message:', errorMessage);
-      alert(`Errore: ${errorMessage}`);
+      alert(`${language === 'it' ? 'Errore' : 'Fehler'}: ${errorMessage}`);
     } finally {
       setIsSubmittingContact(false);
     }
@@ -1029,15 +1033,15 @@ export default function Landing() {
               <span className="text-sm font-medium text-gray-700">{t('languageSwitch')}</span>
             </button>
             <a href="#legal" className="text-gray-700 hover:text-gray-700 font-medium transition-colors relative group">
-              Privacy & Impressum
+              {t('footerPrivacy')}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 via-blue-500 to-green-500 group-hover:w-full transition-all"></span>
             </a>
             <Button className="bg-gradient-to-r from-blue-600 via-blue-500 to-green-500 !text-white hover:from-blue-700 hover:via-blue-600 hover:to-green-600 px-6 py-2.5 font-semibold shadow-md hover:shadow-lg transform hover:scale-105 transition-all" onClick={() => handleQuizStart('header')}>
-              Inizia il quiz
+              {language === 'it' ? 'Inizia il quiz' : 'Quiz starten'}
             </Button>
           </nav>
           <Button className="bg-gradient-to-r from-blue-600 via-blue-500 to-green-500 !text-white hover:from-blue-700 hover:via-blue-600 hover:to-green-600 px-4 py-2 font-semibold shadow-md md:hidden" onClick={() => setQuizOpen(true)}>
-            Quiz
+            {language === 'it' ? 'Quiz' : 'Quiz'}
           </Button>
         </Container>
       </header>
@@ -1665,7 +1669,7 @@ export default function Landing() {
                   >
                     <div className="text-center">
                       <div className="text-2xl font-black text-gray-700 mb-2">&lt; €50</div>
-                      <p className="text-sm text-gray-700 font-medium">Consumo Basso</p>
+                      <p className="text-sm text-gray-700 font-medium">{t('consumptionLow')}</p>
                       <div className="w-full h-1 bg-blue-200 rounded-full mt-3">
                         <div className="w-1/3 h-full bg-gradient-to-r from-blue-600 to-green-600 rounded-full"></div>
                       </div>
@@ -1681,7 +1685,7 @@ export default function Landing() {
                     </div>
                     <div className="text-center">
                       <div className="text-2xl font-black text-gray-600 mb-2">€50-100</div>
-                      <p className="text-sm text-gray-700 font-medium">Consumo Medio</p>
+                      <p className="text-sm text-gray-700 font-medium">{t('consumptionMedium')}</p>
                       <div className="w-full h-1 bg-green-200 rounded-full mt-3">
                         <div className="w-2/3 h-full bg-gradient-to-r from-blue-600 to-green-600 rounded-full"></div>
                       </div>
@@ -1694,7 +1698,7 @@ export default function Landing() {
                   >
                     <div className="text-center">
                       <div className="text-2xl font-black text-gray-700 mb-2">&gt; €100</div>
-                      <p className="text-sm text-gray-700 font-medium">Consumo Alto</p>
+                      <p className="text-sm text-gray-700 font-medium">{t('consumptionHigh')}</p>
                       <div className="w-full h-1 bg-blue-200 rounded-full mt-3">
                         <div className="w-full h-full bg-gradient-to-r from-blue-600 to-green-600 rounded-full"></div>
                       </div>
@@ -2413,12 +2417,14 @@ export default function Landing() {
         </Container>
       </footer>
 
-      {quizOpen && <QuizWizard onClose={() => setQuizOpen(false)} t={t} />}
+      {quizOpen && <QuizWizard onClose={() => setQuizOpen(false)} t={t} language={language} />}
       
       <ComparisonPopup 
         isOpen={comparatorOpen}
         onClose={() => setComparatorOpen(false)}
         data={comparatorData}
+        t={t}
+        language={language}
       />
     </div>
   );
