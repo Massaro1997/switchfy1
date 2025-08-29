@@ -391,12 +391,9 @@ function QuickQuizForm({ onShowComparator }: { onShowComparator: (data: {cap: st
                 <span className="animate-pulse">Calcolo in corso...</span>
               </span>
             ) : (
-              <div className="flex items-center justify-between w-full px-4">
-                <div style={{width: '20px'}}></div>
-                <div style={{position: 'relative', left: '60px'}}>
-                  <span className="text-xl font-black">Scopri subito quanto puoi risparmiare oggi</span>
-                </div>
-                <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-all group-hover:scale-110" style={{position: 'relative', left: '80px'}}>
+              <div className="flex items-center justify-center gap-3">
+                <span className="text-xl font-black">Scopri subito quanto puoi risparmiare</span>
+                <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-all group-hover:scale-110">
                   <ChevronRight className="h-5 w-5 group-hover:translate-x-0.5 transition-transform" />
                 </div>
               </div>
@@ -1931,13 +1928,13 @@ export default function Landing() {
           <div className="grid gap-8 md:grid-cols-2 max-w-4xl mx-auto">
             {/* Alessandra Card */}
             <Card className="border-0 bg-white/80 backdrop-blur-sm shadow-xl overflow-hidden">
-              <div className="p-6">
+              <div className="p-8">
                 <div className="flex flex-col items-center text-center">
-                  <div className="w-32 h-32 mb-6 relative">
+                  <div className="w-48 h-48 mb-6 relative">
                     <img 
                       src="/ale.png" 
                       alt="Alessandra - Energy Consultant" 
-                      className="w-full h-full object-cover rounded-full border-4 border-white shadow-xl ring-4 ring-blue-200/50"
+                      className="w-full h-full object-cover rounded-full border-6 border-white shadow-2xl ring-4 ring-blue-200/50"
                     />
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-1">Alessandra</h3>
@@ -1960,13 +1957,13 @@ export default function Landing() {
 
             {/* Calogero Card */}
             <Card className="border-0 bg-white/80 backdrop-blur-sm shadow-xl overflow-hidden">
-              <div className="p-6">
+              <div className="p-8">
                 <div className="flex flex-col items-center text-center">
-                  <div className="w-32 h-32 mb-6 relative">
+                  <div className="w-48 h-48 mb-6 relative">
                     <img 
                       src="/calogero.png" 
                       alt="Calogero - Founder & CEO" 
-                      className="w-full h-full object-cover rounded-full border-4 border-white shadow-xl ring-4 ring-green-200/50"
+                      className="w-full h-full object-cover rounded-full border-6 border-white shadow-2xl ring-4 ring-green-200/50"
                     />
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-1">Calogero</h3>
