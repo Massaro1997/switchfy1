@@ -1933,11 +1933,11 @@ export default function Landing() {
             <Card className="border-0 bg-white/80 backdrop-blur-sm shadow-xl overflow-hidden">
               <div className="p-6">
                 <div className="flex flex-col items-center text-center">
-                  <div className="w-24 h-24 mb-4 relative">
+                  <div className="w-32 h-32 mb-6 relative">
                     <img 
                       src="/ale.png" 
                       alt="Alessandra - Energy Consultant" 
-                      className="w-full h-full object-cover rounded-full border-4 border-gradient-to-r from-blue-200 to-green-200"
+                      className="w-full h-full object-cover rounded-full border-4 border-white shadow-xl ring-4 ring-blue-200/50"
                     />
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-1">Alessandra</h3>
@@ -1962,11 +1962,11 @@ export default function Landing() {
             <Card className="border-0 bg-white/80 backdrop-blur-sm shadow-xl overflow-hidden">
               <div className="p-6">
                 <div className="flex flex-col items-center text-center">
-                  <div className="w-24 h-24 mb-4 relative">
+                  <div className="w-32 h-32 mb-6 relative">
                     <img 
                       src="/calogero.png" 
                       alt="Calogero - Founder & CEO" 
-                      className="w-full h-full object-cover rounded-full border-4 border-gradient-to-r from-blue-200 to-green-200"
+                      className="w-full h-full object-cover rounded-full border-4 border-white shadow-xl ring-4 ring-green-200/50"
                     />
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-1">Calogero</h3>
