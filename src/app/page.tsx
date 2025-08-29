@@ -1938,19 +1938,18 @@ export default function Landing() {
               {/* Content Section - Bottom half */}
               <div className="p-6 text-center">
                 <h3 className="text-xl font-bold text-gray-900 mb-1">Alessandra</h3>
-                  <p className="text-sm text-blue-600 font-semibold mb-3">Energy Consultant</p>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    Esperta del mercato energetico tedesco con oltre 5 anni di esperienza. 
-                    Ha aiutato migliaia di famiglie italiane a trovare le migliori tariffe energia.
-                  </p>
-                  <div className="mt-4 flex items-center gap-1">
-                    {[...Array(5)].map((_, i) => (
-                      <div key={i} className="w-3 h-3 bg-gradient-to-r from-blue-400 to-green-400 rounded-full">
-                        <span className="text-white text-xs flex items-center justify-center">★</span>
-                      </div>
-                    ))}
-                    <span className="text-xs text-gray-600 ml-2">4.9/5 recensioni</span>
-                  </div>
+                <p className="text-sm text-blue-600 font-semibold mb-3">Energy Consultant</p>
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  Esperta del mercato energetico tedesco con oltre 5 anni di esperienza. 
+                  Ha aiutato migliaia di famiglie italiane a trovare le migliori tariffe energia.
+                </p>
+                <div className="mt-4 flex items-center gap-1">
+                  {[...Array(5)].map((_, i) => (
+                    <div key={i} className="w-3 h-3 bg-gradient-to-r from-blue-400 to-green-400 rounded-full">
+                      <span className="text-white text-xs flex items-center justify-center">★</span>
+                    </div>
+                  ))}
+                  <span className="text-xs text-gray-600 ml-2">4.9/5 recensioni</span>
                 </div>
               </div>
             </Card>
@@ -1970,19 +1969,18 @@ export default function Landing() {
               {/* Content Section - Bottom half */}
               <div className="p-6 text-center">
                 <h3 className="text-xl font-bold text-gray-900 mb-1">Calogero</h3>
-                  <p className="text-sm text-blue-600 font-semibold mb-3">Founder & CEO</p>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    Fondatore di Switchfy, vive in Germania da anni e conosce perfettamente 
-                    le sfide degli italiani nel mercato energetico tedesco. La sua missione: semplificare il risparmio.
-                  </p>
-                  <div className="mt-4 flex items-center gap-1">
-                    {[...Array(5)].map((_, i) => (
-                      <div key={i} className="w-3 h-3 bg-gradient-to-r from-blue-400 to-green-400 rounded-full">
-                        <span className="text-white text-xs flex items-center justify-center">★</span>
-                      </div>
-                    ))}
-                    <span className="text-xs text-gray-600 ml-2">5.000+ clienti aiutati</span>
-                  </div>
+                <p className="text-sm text-blue-600 font-semibold mb-3">Founder & CEO</p>
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  Fondatore di Switchfy, vive in Germania da anni e conosce perfettamente 
+                  le sfide degli italiani nel mercato energetico tedesco. La sua missione: semplificare il risparmio.
+                </p>
+                <div className="mt-4 flex items-center gap-1">
+                  {[...Array(5)].map((_, i) => (
+                    <div key={i} className="w-3 h-3 bg-gradient-to-r from-blue-400 to-green-400 rounded-full">
+                      <span className="text-white text-xs flex items-center justify-center">★</span>
+                    </div>
+                  ))}
+                  <span className="text-xs text-gray-600 ml-2">5.000+ clienti aiutati</span>
                 </div>
               </div>
             </Card>
