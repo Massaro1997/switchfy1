@@ -1145,9 +1145,6 @@ export default function Landing() {
                         RISPARMIO GARANTITO
                       </span>
                     </div>
-                    <h3 className="text-2xl font-black bg-gradient-to-r from-blue-800 to-green-800 bg-clip-text text-transparent mb-6 leading-tight">
-                      Scopri subito quanto puoi<br />risparmiare oggi
-                    </h3>
                   </div>
 
                   {/* Enhanced Quiz Form */}
@@ -1928,16 +1925,19 @@ export default function Landing() {
           <div className="grid gap-8 md:grid-cols-2 max-w-4xl mx-auto">
             {/* Alessandra Card */}
             <Card className="border-0 bg-white/80 backdrop-blur-sm shadow-xl overflow-hidden">
-              <div className="p-8">
-                <div className="flex flex-col items-center text-center">
-                  <div className="w-48 h-48 mb-6 relative">
-                    <img 
-                      src="/ale.png" 
-                      alt="Alessandra - Energy Consultant" 
-                      className="w-full h-full object-cover rounded-full border-6 border-white shadow-2xl ring-4 ring-blue-200/50"
-                    />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-1">Alessandra</h3>
+              {/* Photo Section - Takes up top half */}
+              <div className="h-64 bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center p-6">
+                <div className="w-56 h-56 relative">
+                  <img 
+                    src="/ale.png" 
+                    alt="Alessandra - Energy Consultant" 
+                    className="w-full h-full object-cover rounded-full border-6 border-white shadow-2xl ring-4 ring-blue-200/50"
+                  />
+                </div>
+              </div>
+              {/* Content Section - Bottom half */}
+              <div className="p-6 text-center">
+                <h3 className="text-xl font-bold text-gray-900 mb-1">Alessandra</h3>
                   <p className="text-sm text-blue-600 font-semibold mb-3">Energy Consultant</p>
                   <p className="text-gray-600 text-sm leading-relaxed">
                     Esperta del mercato energetico tedesco con oltre 5 anni di esperienza. 
@@ -1957,16 +1957,19 @@ export default function Landing() {
 
             {/* Calogero Card */}
             <Card className="border-0 bg-white/80 backdrop-blur-sm shadow-xl overflow-hidden">
-              <div className="p-8">
-                <div className="flex flex-col items-center text-center">
-                  <div className="w-48 h-48 mb-6 relative">
-                    <img 
-                      src="/calogero.png" 
-                      alt="Calogero - Founder & CEO" 
-                      className="w-full h-full object-cover rounded-full border-6 border-white shadow-2xl ring-4 ring-green-200/50"
-                    />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-1">Calogero</h3>
+              {/* Photo Section - Takes up top half */}
+              <div className="h-64 bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center p-6">
+                <div className="w-56 h-56 relative">
+                  <img 
+                    src="/calogero.png" 
+                    alt="Calogero - Founder & CEO" 
+                    className="w-full h-full object-cover rounded-full border-6 border-white shadow-2xl ring-4 ring-green-200/50"
+                  />
+                </div>
+              </div>
+              {/* Content Section - Bottom half */}
+              <div className="p-6 text-center">
+                <h3 className="text-xl font-bold text-gray-900 mb-1">Calogero</h3>
                   <p className="text-sm text-blue-600 font-semibold mb-3">Founder & CEO</p>
                   <p className="text-gray-600 text-sm leading-relaxed">
                     Fondatore di Switchfy, vive in Germania da anni e conosce perfettamente 
